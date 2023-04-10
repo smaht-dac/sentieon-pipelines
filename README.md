@@ -1,2 +1,3 @@
-# sentieon-pipelines
-sentieon components for analysis pipelines 
+# Sentieon Pipelines Components
+
+Sentieon components for analysis pipelines.
