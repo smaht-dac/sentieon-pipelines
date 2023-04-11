@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # *******************************************
 # Script to run TNhaplotyper2 [Sentieon]
