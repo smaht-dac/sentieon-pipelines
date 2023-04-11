@@ -5,14 +5,14 @@
 #   on tumor only data
 #
 # Arguments:
-#   -i input file for tumor in BAM format
+#   -i input file for tumor in BAM format, index file required
 #   -s sample name for tumor as string
-#   -r genome reference file in FASTA format
-#   [-p panel of normal file in compressed VCF format (gzip|bgzip)]
-#   [-g population allele frequencies file in compressed VCF format (gzip|bgzip)]
+#   -r genome reference file in FASTA format, index files required
+#   [-p panel of normal file in compressed (gzip|bgzip) VCF format, index file required]
+#   [-g population allele frequencies file in compressed (gzip|bgzip) VCF format, index file required]
 #
 # Output:
-#   output.vcf.gz: Output file with variant calls in compressed VCF format (bgzip)
+#   - output.vcf.gz: Output file with variant calls in compressed (bgzip) VCF format
 #     output.vcf.gz.tbi: Tabix index file
 # *******************************************
 
