@@ -8,8 +8,12 @@
 #   -i input file for tumor in BAM format
 #   -s sample name for tumor as string
 #   -r genome reference file in FASTA format
-#   [-p panel of normal file in VCF format]
-#   [-g population allele frequencies file in VCF format]
+#   [-p panel of normal file in compressed VCF format (gzip|bgzip)]
+#   [-g population allele frequencies file in compressed VCF format (gzip|bgzip)]
+#
+# Output:
+#   output.vcf.gz: Output file with variant calls in compressed VCF format (bgzip)
+#     output.vcf.gz.tbi: Tabix index file
 # *******************************************
 
 ## Variables
@@ -50,7 +54,8 @@ shift $(($OPTIND -1))
 check_args input_file_bam sample_name genome_reference_fasta
 
 ## Other settings
-nt=$(nproc) #number of threads to use in computation, set to number of cores in the server
+nt=$(nproc) # Number of threads to use in computation,
+            #   set to number of cores in the server
 
 # ******************************************
 # 1. Create TNhaplotyper2 command line
