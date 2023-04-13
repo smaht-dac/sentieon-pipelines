@@ -41,7 +41,7 @@ input:
 output:
 
   # File output
-  TNhaplotyper2_vcf_gz:
+  output_file_vcf_gz:
     argument_type: file.vcf_gz
     secondary_files:
       - vcf_gz_tbi
