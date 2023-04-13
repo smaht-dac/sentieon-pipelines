@@ -73,8 +73,8 @@ workflows:
     output:
 
       # File output
-      output_file_vcf_gz:
-        file_type: TNhaplotyper2 VCF
+      TNhaplotyper2_vcf_gz:
+        file_type: TNhaplotyper2 VCF.gz
 
     ## EC2 Configuration to use ########
     ####################################

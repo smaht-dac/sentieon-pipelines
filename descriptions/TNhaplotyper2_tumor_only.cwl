@@ -70,7 +70,7 @@ inputs:
          https://console.cloud.google.com/storage/browser/gatk-best-practices
 
 outputs:
-  - id: output_file_vcf_gz
+  - id: TNhaplotyper2_vcf_gz
     type: File
     secondaryFiles:
       - .tbi
