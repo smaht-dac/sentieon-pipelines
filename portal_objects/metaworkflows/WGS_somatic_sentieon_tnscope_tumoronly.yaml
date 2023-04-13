@@ -1,0 +1,98 @@
+## Pipeline information #####################################
+#     General information for the pipeline
+#############################################################
+name: TNhaplotyper2_tumor_only
+description: Run Sentieon TNhaplotyper2 algorithm to call SNVs and Indels for tumor only anlysis. |
+             It is possible to specify a panel of normal and/or a file with population allele frequencies
+
+## General arguments ########################################
+#     Pipeline input, reference files, and general arguments
+#       define all arguments for the pipeline here
+#############################################################
+input:
+
+  # File arguments
+  input_file_bam:
+    argument_type: file.bam
+    dimensionality: 1
+
+  genome_reference_fasta:
+    argument_type: file.fa
+    files:
+      - complete-reference-fasta@hg38
+
+  panel_of_normal:
+    argument_type: file.vcf_gz
+    files:
+      - pon-1000g-mutect2@hg38
+
+  population_allele_frequencies:
+    argument_type: file.vcf_gz
+    files:
+      - af-only-gnomad-mutect2@hg38
+
+  # Parameter arguments
+  sample_name:
+    argument_type: parameter.string
+
+## Workflows and dependencies ###############################
+#     Information for the workflows and their dependencies
+#############################################################
+workflows:
+
+  ## Workflow definition #####################
+  #  TNhaplotyper2_tumor_only
+  ############################################
+  TNhaplotyper2_tumor_only:
+
+    ## Specific arguments ##############
+    ####################################
+    input:
+
+      # File arguments
+      input_file_bam:
+        argument_type: file.bam
+        input_dimension: 1
+
+      genome_reference_fasta:
+        argument_type: file.fa
+
+      panel_of_normal:
+        argument_type: file.vcf_gz
+
+      population_allele_frequencies:
+        argument_type: file.vcf_gz
+
+      # Parameter arguments
+      sample_name:
+        argument_type: parameter.string
+
+    ## Output ##############################
+    #     Output files for the workflow
+    ########################################
+    output:
+
+      # File output
+      output_file_vcf_gz:
+        file_type: TNhaplotyper2 VCF
+
+    ## EC2 Configuration to use ########
+    ####################################
+    config:
+      instance_type:
+        - c5n.9xlarge
+        - c5.9xlarge
+        - c5a.8xlarge
+        - c5.12xlarge
+        - c5a.12xlarge
+        - c6i.8xlarge
+        - c6i.12xlarge
+        - m6a.8xlarge
+        - m6a.12xlarge
+        - m6i.8xlarge
+        - m6i.12xlarge
+      ebs_size: 1.5x
+      EBS_optimized: True
+      spot_instance: True
+      run_name: run_TNhaplotyper2_tumor_only
+      behavior_on_capacity_limit: wait_and_retry
