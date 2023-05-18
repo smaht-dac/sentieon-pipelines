@@ -39,7 +39,7 @@ ln -s ${reference_bwt}.alt reference.fasta.alt
 # 1. Mapping reads with BWA-MEM and
 # sort by coordinates.
 # ******************************************
-( sentieon bwa mem -t $nt $fasta $fastq_1 $fastq_2 || exit 1 ) | sentieon util sort -o sorted.bam -t $nt --sam2bam -i -
+( sentieon bwa mem -t $nt $fasta $fastq_1 $fastq_2 || exit 1 ) | sentieon util sort -o sorted.bam -t $nt --sam2bam -i - || exit 1
 
 # ******************************************
 # 2. Check BAM integrity.
