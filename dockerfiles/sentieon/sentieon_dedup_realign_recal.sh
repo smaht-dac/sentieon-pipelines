@@ -13,8 +13,8 @@ sorted_bam=$1
 
 # Reference data files
 reference_fa=$2
-dbsnp=$3
-known_Mills_indels=$4
+known_sites_snp=$3
+known_sites_indel=$4
 
 # Other
 optical_dup_pix_dist=$5
@@ -46,14 +46,14 @@ sentieon driver -t $nt -i $sorted_bam --algo Dedup --optical_dup_pix_dist $optic
 # ******************************************
 # 2. Indel realignment
 # ******************************************
-sentieon driver -r $fasta -t $nt -i deduped.bam --algo Realigner -k $known_Mills_indels realigned.bam || exit 1
+sentieon driver -r $fasta -t $nt -i deduped.bam --algo Realigner -k $known_sites_indel realigned.bam || exit 1
 
 # *****************************************************************************
 # 3. Base recalibration - see:
 # https://support.sentieon.com/appnotes/arguments/#bqsr-calculate-recalibration
 # Not generating RECAL_DATA.TABLE.POST for plotting, just need recal_data.table.
 # *****************************************************************************
-sentieon driver -r $fasta -t $nt -i realigned.bam --algo QualCal -k $dbsnp -k $known_Mills_indels recal_data.table || exit 1
+sentieon driver -r $fasta -t $nt -i realigned.bam --algo QualCal -k $known_sites_snp -k $known_sites_indel recal_data.table || exit 1
 sentieon driver -r $fasta -t $nt -i realigned.bam -q recal_data.table --algo ReadWriter recalibrated.bam || exit 1
 
 # ******************************************
