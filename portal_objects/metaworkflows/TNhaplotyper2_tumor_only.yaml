@@ -2,7 +2,7 @@
 #     General information for the pipeline
 #############################################################
 name: TNhaplotyper2_tumor_only
-description: Run Sentieon TNhaplotyper2 algorithm to call SNVs and Indels for tumor only anlysis. |
+description: Run Sentieon TNhaplotyper2 algorithm to call SNVs and indels for tumor only anlysis. |
              It is possible to specify a panel of normal and/or a file with population allele frequencies
 
 ## General arguments ########################################
