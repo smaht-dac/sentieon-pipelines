@@ -1,0 +1,47 @@
+## Workflow information #####################################
+#     General information for the workflow
+#############################################################
+name: sentieon_dedup_realign_recal
+description: Run Sentieon to mark duplicates (Dedup), |
+             realign indels (Realigner), |
+             calculate (QualCal) and apply base and indel scores recalibration
+
+runner:
+  language: cwl
+  main: sentieon_dedup_realign_recal.cwl
+
+software:
+  - Sentieon@202112.06
+
+## Input information ########################################
+#     Input files and parameters
+#############################################################
+input:
+
+  # Required file arguments
+  input_file_bam:
+    argument_type: file.bam
+
+  genome_reference_fasta:
+    argument_type: file.fa
+
+  known_sites_snp:
+    argument_type: file.vcf_gz
+
+  known_sites_indel:
+    argument_type: file.vcf
+
+  # Optional parameter arguments
+  optical_dup_pix_dist:
+    argument_type: parameter.integer
+
+## Output information #######################################
+#     Output files and quality controls
+#############################################################
+output:
+
+  # File output
+  output_file_bam:
+    argument_type: file.bam
+    secondary_files:
+      - bai
