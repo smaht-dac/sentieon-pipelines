@@ -17,7 +17,7 @@ hints:
   - class: DockerRequirement
     dockerPull: ACCOUNT/sentieon:VERSION
 
-baseCommand: [sentieon_bwa_mem.sh]
+baseCommand: [sentieon_bwa-mem_sort.sh]
 
 inputs:
   - id: input_file_r1_fastq_gz

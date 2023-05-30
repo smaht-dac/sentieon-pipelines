@@ -56,9 +56,9 @@ RUN ln -s samtools-1.17 samtools
 COPY TNhaplotyper2_tumor_only.sh .
 RUN chmod +x TNhaplotyper2_tumor_only.sh
 
-## sentieon_bwa_mem
-COPY sentieon_bwa_mem.sh .
-RUN chmod +x sentieon_bwa_mem.sh
+## sentieon_bwa-mem_sort
+COPY sentieon_bwa-mem_sort.sh .
+RUN chmod +x sentieon_bwa-mem_sort.sh
 
 ## sentieon_dedup_realign_recal
 COPY sentieon_dedup_realign_recal.sh .

@@ -1,13 +1,13 @@
 ## Workflow information #####################################
 #     General information for the workflow
 #############################################################
-name: sentieon_bwa_mem
+name: sentieon_bwa-mem_sort
 description: Run Sentieon BWA-MEM on paired FASTQ files. |
              Sort the alignment BAM file by coordinates
 
 runner:
   language: cwl
-  main: sentieon_bwa_mem.cwl
+  main: sentieon_bwa-mem_sort.cwl
 
 software:
   - Sentieon@202112.06
