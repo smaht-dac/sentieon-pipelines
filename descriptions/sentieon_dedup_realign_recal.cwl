@@ -82,7 +82,7 @@ outputs:
     outputBinding:
       glob: recalibrated.bam
     secondaryFiles:
-        - .bai
+      - .bai
 
 doc: |
   Run Sentieon to mark duplicates (Dedup), |

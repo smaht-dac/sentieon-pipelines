@@ -64,7 +64,7 @@ outputs:
     outputBinding:
       glob: sorted.bam
     secondaryFiles:
-        - .bai
+      - .bai
 
 doc: |
   Run Sentieon BWA-MEM on paired FASTQ files. |
