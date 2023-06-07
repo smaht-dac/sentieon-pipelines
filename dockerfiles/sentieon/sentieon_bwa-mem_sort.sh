@@ -38,8 +38,13 @@ ln -s ${reference_bwt}.alt reference.fasta.alt
 # ******************************************
 # 1. Mapping reads with BWA-MEM and
 # sort by coordinates.
+# The results of this call are dependent on
+# the number of threads used.
+# To have number of threads independent results,
+# add chunk size option -K 10000000.
 # ******************************************
-( sentieon bwa mem -t $nt $fasta $fastq_1 $fastq_2 || exit 1 ) | sentieon util sort -o sorted.bam -t $nt --sam2bam -i - || exit 1
+# ******************************************
+( sentieon bwa mem -t $nt -K 10000000 $fasta $fastq_1 $fastq_2 || exit 1 ) | sentieon util sort -o sorted.bam -t $nt --sam2bam -i - || exit 1
 
 # ******************************************
 # 2. Check BAM integrity.
