@@ -57,11 +57,11 @@ inputs:
     inputBinding:
       position: 4
     secondaryFiles:
-      - .idx
+      - .tbi
     doc: VCF file used as a set of known indel sites (e.g. Mills and 1000G). |
          The known sites will be used to help identify likely sites |
          where the realignment is necessary. |
-         Expect a normal VCF with the corresponding index file
+         Expect a compressed VCF with the corresponding index file
 
   - id: optical_dup_pix_dist
     default: 2500

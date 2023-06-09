@@ -29,7 +29,7 @@ input:
     argument_type: file.vcf_gz
 
   known_sites_indel:
-    argument_type: file.vcf
+    argument_type: file.vcf_gz
 
   # Optional parameter arguments
   optical_dup_pix_dist:

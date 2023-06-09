@@ -19,7 +19,7 @@ input:
   genome_reference_fasta:
     argument_type: file.fa
     files:
-      - complete-reference-fasta@hg38
+      - complete-reference-fasta-no-alt-plus-hs38d1@GCA_000001405.15_GRCh38
 
   panel_of_normal:
     argument_type: file.vcf_gz

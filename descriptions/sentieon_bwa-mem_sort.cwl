@@ -54,9 +54,7 @@ inputs:
       - ^.amb
       - ^.pac
       - ^.sa
-      - ^.alt
-    doc: Genome reference in BWT format with the corresponding index files. |
-         Include .alt index file
+    doc: Genome reference in BWT format with the corresponding index files
 
 outputs:
   - id: output_file_bam
