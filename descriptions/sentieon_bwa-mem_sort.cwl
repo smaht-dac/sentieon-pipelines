@@ -24,14 +24,14 @@ inputs:
     type: File
     inputBinding:
       position: 1
-    doc: Read1 input file name.|
+    doc: Read 1 input file name.|
          Expect a compressed FASTQ file
 
   - id: input_file_r2_fastq_gz
     type: File
     inputBinding:
       position: 2
-    doc: Read2 input file name. |
+    doc: Read 2 input file name. |
          Expect a compressed FASTQ file
 
   - id: genome_reference_fasta
