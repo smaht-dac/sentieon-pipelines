@@ -44,10 +44,15 @@ ln -s ${reference_bwt}.alt reference.fasta.alt
 # add chunk size option -K 10000000.
 # ******************************************
 # ******************************************
-( sentieon bwa mem -t $nt -K 10000000 $fasta $fastq_1 $fastq_2 || exit 1 ) | sentieon util sort -o sorted.bam -t $nt --sam2bam -i - || exit 1
+( sentieon bwa mem -t $nt -K 10000000 $fasta $fastq_1 $fastq_2 || exit 1 ) | samtools sort -@ $nt -o sorted.bam - || exit 1
 
 # ******************************************
-# 2. Check BAM integrity.
+# 2. Index BAM
+# ******************************************
+samtools index sorted.bam || exit 1
+
+# ******************************************
+# 3. Check BAM integrity.
 # ******************************************
 py_script="
 import sys, os
