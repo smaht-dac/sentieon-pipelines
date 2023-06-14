@@ -1,49 +1,37 @@
 #!/bin/sh
 
 # *******************************************
-# Generate a sorted BAM file from paired FASTQ
-# files for a single sample.
+# Generate a sorted BAM file from long reads FASTQ
+# file for a single sample.
 # The file will be sorted by coordinates.
 # *******************************************
 
 ## Command line arguments
-# Input FASTQ files
-fastq_1=$1
-fastq_2=$2
+# Input FASTQ file
+fastq=$1
 
-# Reference data files
-reference_fa=$3
-reference_bwt=$4
+# Reference data file
+reference_fa=$2
+
+# Other arguments
+preset=$3
+# minimap2 -ax $preset reference.fa reads.fq.gz > alignment.sam
+#   map-pb    -> PacBio CLR genomic reads
+#   map-ont   -> Oxford Nanopore genomic reads
+#   map-hifi  -> PacBio HiFi/CCS genomic reads (v2.19 or later)
+#   asm5/asm10/asm20
+#             -> asm-to-ref mapping, for ~0.1/1/5% sequence divergence
+#                PacBio HiFi/CCS genomic reads (v2.18 or earlier)
 
 ## Other settings
 nt=$(nproc) # number of threads to use in computation,
             # set to number of cores in the server
 
-## SymLink to reference files
-fasta="reference.fasta"
-
-# FASTA reference
-ln -s ${reference_fa}.fa reference.fasta
-ln -s ${reference_fa}.fa.fai reference.fasta.fai
-ln -s ${reference_fa}.dict reference.dict
-
-# BWT reference
-ln -s ${reference_bwt}.bwt reference.fasta.bwt
-ln -s ${reference_bwt}.ann reference.fasta.ann
-ln -s ${reference_bwt}.amb reference.fasta.amb
-ln -s ${reference_bwt}.pac reference.fasta.pac
-ln -s ${reference_bwt}.sa reference.fasta.sa
-ln -s ${reference_bwt}.alt reference.fasta.alt
-
 # ******************************************
-# 1. Mapping reads with BWA-MEM and
+# 1. Mapping reads with minimap2 and
 # sort by coordinates.
-# The results of this call are dependent on
-# the number of threads used.
-# To have number of threads independent results,
-# add chunk size option -K 10000000.
 # ******************************************
-( sentieon bwa mem -t $nt -K 10000000 $fasta $fastq_1 $fastq_2 || exit 1 ) | samtools sort -@ $nt -o sorted.bam - || exit 1
+( sentieon minimap2 -t $nt -L -ax $preset $reference_fa $fastq || exit 1 ) | samtools sort -@ $nt -o sorted.bam - || exit 1
 
 # ******************************************
 # 2. Index BAM

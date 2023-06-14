@@ -64,6 +64,10 @@ RUN chmod +x sentieon_bwa-mem_sort.sh
 COPY sentieon_dedup_realign_recal.sh .
 RUN chmod +x sentieon_dedup_realign_recal.sh
 
+## sentieon_minimap2_sort
+COPY sentieon_minimap2_sort.sh .
+RUN chmod +x sentieon_minimap2_sort.sh
+
 #######################################################################
 #     Updating env
 #######################################################################
