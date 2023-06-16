@@ -1,0 +1,42 @@
+## Workflow information #####################################
+#     General information for the workflow
+#############################################################
+name: sentieon_QualCal
+description: Run Sentieon to calculate (QualCal) |
+             and apply base and indel scores recalibration
+
+runner:
+  language: cwl
+  main: sentieon_QualCal.cwl
+
+software:
+  - Sentieon@202112.06
+
+## Input information ########################################
+#     Input files and parameters
+#############################################################
+input:
+
+  # Required file arguments
+  input_file_bam:
+    argument_type: file.bam
+
+  genome_reference_fasta:
+    argument_type: file.fa
+
+  known_sites_snp:
+    argument_type: file.vcf_gz
+
+  known_sites_indel:
+    argument_type: file.vcf_gz
+
+## Output information #######################################
+#     Output files and quality controls
+#############################################################
+output:
+
+  # File output
+  output_file_bam:
+    argument_type: file.bam
+    secondary_files:
+      - bai

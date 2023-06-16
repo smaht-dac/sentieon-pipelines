@@ -60,9 +60,17 @@ RUN chmod +x TNhaplotyper2_tumor_only.sh
 COPY sentieon_bwa-mem_sort.sh .
 RUN chmod +x sentieon_bwa-mem_sort.sh
 
-## sentieon_dedup_realign_recal
-COPY sentieon_dedup_realign_recal.sh .
-RUN chmod +x sentieon_dedup_realign_recal.sh
+## sentieon_Dedup
+COPY sentieon_Dedup.sh .
+RUN chmod +x sentieon_Dedup.sh
+
+## sentieon_Realigner
+COPY sentieon_Realigner.sh .
+RUN chmod +x sentieon_Realigner.sh
+
+## sentieon_QualCal
+COPY sentieon_QualCal.sh .
+RUN chmod +x sentieon_QualCal.sh
 
 ## sentieon_minimap2_sort
 COPY sentieon_minimap2_sort.sh .

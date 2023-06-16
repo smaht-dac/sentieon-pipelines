@@ -1,0 +1,36 @@
+## Workflow information #####################################
+#     General information for the workflow
+#############################################################
+name: sentieon_Dedup
+description: Run Sentieon to mark duplicates (Dedup)
+
+runner:
+  language: cwl
+  main: sentieon_Dedup.cwl
+
+software:
+  - Sentieon@202112.06
+
+## Input information ########################################
+#     Input files and parameters
+#############################################################
+input:
+
+  # Required file arguments
+  input_file_bam:
+    argument_type: file.bam
+
+  # Optional parameter arguments
+  optical_dup_pix_dist:
+    argument_type: parameter.integer
+
+## Output information #######################################
+#     Output files and quality controls
+#############################################################
+output:
+
+  # File output
+  output_file_bam:
+    argument_type: file.bam
+    secondary_files:
+      - bai
