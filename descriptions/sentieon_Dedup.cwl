@@ -52,4 +52,4 @@ outputs:
       - .bai
 
 doc: |
-  Run Sentieon to mark duplicates (Dedup)
+  Run Sentieon to mark duplicates (Dedup) in input BAM file

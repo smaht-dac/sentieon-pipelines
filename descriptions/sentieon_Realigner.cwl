@@ -60,4 +60,4 @@ outputs:
       - .bai
 
 doc: |
-  Run Sentieon to realign indels (Realigner)
+  Run Sentieon to realign indels (Realigner) in input BAM file
