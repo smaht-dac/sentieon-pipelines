@@ -19,17 +19,17 @@ input:
   genome_reference_fasta:
     argument_type: file.fa
     files:
-      - complete-reference-fasta-no-alt-plus-hs38d1@GCA_000001405.15_GRCh38
+      - complete-reference-fasta-no-alt@GCA_000001405.15_GRCh38_no_decoy
 
   panel_of_normal:
     argument_type: file.vcf_gz
     files:
-      - pon-1000g-mutect2@hg38
+      - pon-1000g-mutect2@GRCh38
 
   population_allele_frequencies:
     argument_type: file.vcf_gz
     files:
-      - af-only-gnomad-mutect2@hg38
+      - af-only-gnomad-mutect2@GRCh38
 
   # Parameter arguments
   sample_name:
