@@ -43,21 +43,8 @@ inputs:
       prefix: -r
     doc: Genome reference in FASTA format with the corresponding index files
 
-  - id: panel_of_normal
-    type: File
-    default: null
-    secondaryFiles:
-      - .tbi
-    inputBinding:
-      prefix: -p
-    doc: Panel of normal in compressed VCF format (gzip|bgzip) |
-         with the corresponding index file. |
-         Can be downloaded from the Broad as part of GATK Best Practice resources |
-         https://console.cloud.google.com/storage/browser/gatk-best-practices
-
   - id: population_allele_frequencies
     type: File
-    default: null
     secondaryFiles:
       - .tbi
     inputBinding:
@@ -69,14 +56,41 @@ inputs:
          or downloaded from the Broad as part of GATK Best Practice resources |
          https://console.cloud.google.com/storage/browser/gatk-best-practices
 
+  - id: panel_of_normal
+   type: File
+   default: null
+   secondaryFiles:
+     - .tbi
+   inputBinding:
+     prefix: -p
+   doc: Panel of normal in compressed VCF format (gzip|bgzip) |
+        with the corresponding index file. |
+        Can be downloaded from the Broad as part of GATK Best Practice resources |
+        https://console.cloud.google.com/storage/browser/gatk-best-practices
+
+  - id: output_file_prefix
+    type: string
+    default: "out"
+    inputBinding:
+      prefix: -o
+    doc: Prefix to use for the output files
+
 outputs:
   - id: output_file_vcf_gz
     type: File
     secondaryFiles:
       - .tbi
     outputBinding:
-      glob: output.vcf.gz
+      glob: $(inputs.output_file_prefix + ".vcf.gz")
+
+  - id: output_file_filtered_vcf_gz
+    type: File
+    secondaryFiles:
+      - .tbi
+    outputBinding:
+      glob: $(inputs.output_file_prefix + "_filtered.vcf.gz")
 
 doc: |
-  Run Sentieon TNhaplotyper2 algorithm for tumor only. |
-  It is possible to specify a panel of normal and/or a file with population allele frequencies
+  Run Sentieon TNhaplotyper2 and TNfilter algorithms for tumor only. |
+  It is possible to specify a panel of normal and a file with population allele frequencies in VCF format. |
+  Produce raw and filtered calls in VCF format

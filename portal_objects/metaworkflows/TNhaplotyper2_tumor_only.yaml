@@ -2,8 +2,9 @@
 #     General information for the pipeline
 #############################################################
 name: TNhaplotyper2_tumor_only
-description: Run Sentieon TNhaplotyper2 algorithm to call SNVs and indels for tumor only anlysis. |
-             It is possible to specify a panel of normal and/or a file with population allele frequencies
+description: Run Sentieon TNhaplotyper2 and TNfilter algorithms for tumor only. |
+             It is possible to specify a panel of normal and a file with population allele frequencies in VCF format. |
+             Produce raw and filtered calls in VCF format
 
 ## General arguments ########################################
 #     Pipeline input, reference files, and general arguments
@@ -75,6 +76,9 @@ workflows:
       # File output
       output_file_vcf_gz:
         file_type: TNhaplotyper2 output VCF
+
+      output_file_filtered_vcf_gz:
+        file_type: TNfilter output VCF
 
     ## EC2 Configuration to use ########
     ####################################
