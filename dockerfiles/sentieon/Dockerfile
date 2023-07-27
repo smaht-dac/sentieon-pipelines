@@ -60,6 +60,14 @@ RUN chmod +x TNhaplotyper2_tumor_only.sh
 COPY sentieon_bwa-mem_sort.sh .
 RUN chmod +x sentieon_bwa-mem_sort.sh
 
+## sentieon_LocusCollector
+COPY sentieon_LocusCollector.sh .
+RUN chmod +x sentieon_LocusCollector.sh
+
+## sentieon_LocusCollector_apply
+COPY sentieon_LocusCollector_apply.sh .
+RUN chmod +x sentieon_LocusCollector_apply.sh
+
 ## sentieon_Dedup
 COPY sentieon_Dedup.sh .
 RUN chmod +x sentieon_Dedup.sh

@@ -33,7 +33,10 @@ ln -s ${reference_bwt}.ann reference.fasta.ann
 ln -s ${reference_bwt}.amb reference.fasta.amb
 ln -s ${reference_bwt}.pac reference.fasta.pac
 ln -s ${reference_bwt}.sa reference.fasta.sa
-ln -s ${reference_bwt}.alt reference.fasta.alt
+
+if [ -f ${reference_bwt}.alt ]; then
+    ln -s ${reference_bwt}.alt reference.fasta.alt
+fi
 
 # ******************************************
 # 1. Mapping reads with BWA-MEM and
@@ -48,7 +51,7 @@ ln -s ${reference_bwt}.alt reference.fasta.alt
 # ******************************************
 # 2. Index BAM
 # ******************************************
-samtools index sorted.bam || exit 1
+samtools index -@ $nt sorted.bam || exit 1
 
 # ******************************************
 # 3. Check BAM integrity.

@@ -93,7 +93,7 @@ if ! [ -z ${panel_of_normal} ]; then
 fi
 
 # Specify output file
-command+=" ${output}.vcf"
+command+=" ${output}.vcf.gz"
 
 ## Add OrientationBias arguments
 command+=" --algo OrientationBias --tumor_sample ${sample_name} ${output}.priors"
@@ -111,22 +111,9 @@ eval $command || exit 1
 # ******************************************
 sentieon driver -t ${nt} -r ${genome_reference_fasta} \
    --algo TNfilter \
-   -v ${output}.vcf \
+   -v ${output}.vcf.gz \
    --tumor_sample ${sample_name} \
    --contamination ${output}.contamination \
    --tumor_segments ${output}.segments \
    --orientation_priors ${output}.priors \
-   ${output}_filtered.vcf || exit 1
-
-# ******************************************
-# 3. Compress and index output
-# ******************************************
-# RAW calls
-rm ${output}.vcf.idx || exit 1
-bgzip ${output}.vcf || exit 1
-tabix ${output}.vcf.gz || exit 1
-
-# FILTERED calls
-rm ${output}_filtered.vcf.idx || exit 1
-bgzip ${output}_filtered.vcf || exit 1
-tabix ${output}_filtered.vcf.gz || exit 1
+   ${output}_filtered.vcf.gz || exit 1

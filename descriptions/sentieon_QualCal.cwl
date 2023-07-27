@@ -25,7 +25,7 @@ inputs:
     inputBinding:
       position: 1
     secondaryFiles:
-        - .bai
+      - .bai
     doc: Input BAM file with the corresponding index file. |
          Must be sorted by coordinates, |
          and pre-processed to add read groups, mark duplicates, |
