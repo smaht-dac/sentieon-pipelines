@@ -55,7 +55,7 @@ outputs:
     outputBinding:
       glob: $(inputs.output_table_name)
     secondaryFiles:
-      .tbi
+      - .tbi
 
 doc: |
   Run Sentieon to create duplicate metrics with LocusCollector algorithm. |

@@ -1,0 +1,37 @@
+## Workflow information #####################################
+#     General information for the workflow
+#############################################################
+name: sentieon_LocusCollector
+description: Run Sentieon to create duplicate metrics with LocusCollector algorithm. |
+             Accept a list of BAM files to enable processing by lane. |
+             Implemented to run on shards in distributed mode
+
+runner:
+  language: cwl
+  main: sentieon_LocusCollector.cwl
+
+software:
+  - Sentieon@202112.06
+
+## Input information ########################################
+#     Input files and parameters
+#############################################################
+input:
+
+  # Required file arguments
+  shards_file_txt:
+    argument_type: file.txt
+
+  input_files_bam:
+    argument_type: file.bam
+
+## Output information #######################################
+#     Output files and quality controls
+#############################################################
+output:
+
+  # File output
+  output_table_vcf_gz:
+    argument_type: file.vcf_gz
+    secondary_files:
+      - tbi
