@@ -25,6 +25,10 @@ input:
   input_files_bam:
     argument_type: file.bam
 
+  # Require parameter arguments
+  shard_index:
+    argument_type: parameter.string
+
 ## Output information #######################################
 #     Output files and quality controls
 #############################################################
