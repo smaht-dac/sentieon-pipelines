@@ -24,15 +24,23 @@ inputs:
     type: File
     inputBinding:
       position: 1
-    doc: Text file containing a list of contiguous shards to use |
-         following the format <chr>:<start>-<end>,|
-         one shard per line
+    doc: Text file containing a list of contiguous regions to use. |
+         Regions are divided by shards following the format |
+         @<shard_index>TAB<chr>:<start>-<end>, |
+         one region per line
+
+  - id: shard_index
+    type: string
+    inputBinding:
+      position: 2
+      doc: Index to use to extract the right set of regions for the shard |
+           from inputs.shards_file_txt
 
   - id: output_table_name
     type: string
     default: "score.vcf.gz"
     inputBinding:
-      position: 2
+      position: 3
     doc: Name for the compressed output table with the duplicates scoring |
          in VCF format
 
@@ -42,7 +50,7 @@ inputs:
         items: File
         type: array
     inputBinding:
-      position: 3
+      position: 4
     secondaryFiles:
       - .bai
     doc: List of input BAM files with the corresponding index file. |

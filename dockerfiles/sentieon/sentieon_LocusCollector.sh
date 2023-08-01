@@ -11,15 +11,17 @@
 ## Command line arguments
 # Input shards file
 shards_file=$1
-# Text file containing a list of contiguous shards to use
-# following the format <chr>:<start>-<end>,
-# one shard per line
+# Text file containing a list of contiguous regions to use.
+# Regions are divided by shards following the format
+# @<shard_index>TAB<chr>:<start>-<end>,
+# one region per line
+shard_index=$2
 
 # Output file
-output_file=$2
+output_file=$3
 
 # Input BAM files
-shift 2 # $@ stores all the input files
+shift 3 # $@ stores all the input files
 
 ## Other settings
 nt=$(nproc) # number of threads to use in computation,
@@ -39,13 +41,15 @@ for arg in $@;
 # ******************************************
 # 2. Create shards
 # ******************************************
+grep -P "\@${shard_index}\t" $shards_file | cut -f 2 > SHARDS_LIST
+
 shards=""
 
 # Reading shards
 while read -r line;
   do
     shards+=" --shard $line"
-  done <$shards_file
+  done <SHARDS_LIST
 
 # ******************************************
 # 3. Create duplicates summary
