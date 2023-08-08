@@ -33,8 +33,8 @@ inputs:
     type: string
     inputBinding:
       position: 2
-      doc: Index to use to extract the right set of regions for the shard |
-           from inputs.shards_file_txt
+    doc: Index to use to extract the right set of regions for the shard |
+         from inputs.shards_file_txt
 
   - id: output_table_name
     type: string

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # *******************************************
 # Mark duplicates in a sorted BAM file

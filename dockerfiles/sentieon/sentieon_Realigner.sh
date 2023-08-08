@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # *******************************************
 # Realign indels in a sorted BAM file

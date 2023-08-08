@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # *******************************************
 # Create duplicates summary for a single sample.

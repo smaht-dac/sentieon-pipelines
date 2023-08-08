@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # *******************************************
 # Generate a sorted BAM file from paired FASTQ

@@ -1,14 +1,15 @@
 ## Workflow information #####################################
 #     General information for the workflow
 #############################################################
-name: sentieon_LocusCollector
-description: Run Sentieon to create duplicate metrics with LocusCollector algorithm. |
-             Accept a list of BAM files to enable processing by lane. |
-             Implemented to run on shards in distributed mode
+name: sentieon_QualCal_merge
+description: Run Sentieon to calculate (QualCal) |
+             and apply base and indel scores recalibration. |
+             Takes any number of BAM files as input and process them together |
+             producing a final merged BAM file
 
 runner:
   language: cwl
-  main: sentieon_LocusCollector.cwl
+  main: sentieon_QualCal.cwl
 
 software:
   - Sentieon@202112.06
@@ -19,15 +20,17 @@ software:
 input:
 
   # Required file arguments
-  shards_file_txt:
-    argument_type: file.txt
-
   input_files_bam:
     argument_type: file.bam
 
-  # Require parameter arguments
-  shard_index:
-    argument_type: parameter.string
+  genome_reference_fasta:
+    argument_type: file.fa
+
+  known_sites_snp:
+    argument_type: file.vcf_gz
+
+  known_sites_indel:
+    argument_type: file.vcf_gz
 
 ## Output information #######################################
 #     Output files and quality controls
@@ -35,7 +38,7 @@ input:
 output:
 
   # File output
-  output_table_vcf_gz:
-    argument_type: file.vcf_gz
+  output_file_bam:
+    argument_type: file.bam
     secondary_files:
-      - vcf_gz_tbi
+      - bai

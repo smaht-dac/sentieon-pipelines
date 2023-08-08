@@ -80,6 +80,10 @@ RUN chmod +x sentieon_Realigner.sh
 COPY sentieon_QualCal.sh .
 RUN chmod +x sentieon_QualCal.sh
 
+## sentieon_QualCal_merge
+COPY sentieon_QualCal_merge.sh .
+RUN chmod +x sentieon_QualCal_merge.sh
+
 ## sentieon_minimap2_sort
 COPY sentieon_minimap2_sort.sh .
 RUN chmod +x sentieon_minimap2_sort.sh
