@@ -9,7 +9,7 @@ description: Run Sentieon to calculate (QualCal) |
 
 runner:
   language: cwl
-  main: sentieon_QualCal.cwl
+  main: sentieon_QualCal_merge.cwl
 
 software:
   - Sentieon@202112.06
