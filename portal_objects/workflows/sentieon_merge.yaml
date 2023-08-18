@@ -1,12 +1,13 @@
 ## Workflow information #####################################
 #     General information for the workflow
 #############################################################
-name: sentieon_Realigner
-description: Run Sentieon to realign indels (Realigner) in input BAM file
+name: sentieon_merge
+description: Takes any number of BAM files as input and merge them together |
+             producing a final merged BAM file
 
 runner:
   language: cwl
-  main: sentieon_Realigner.cwl
+  main: sentieon_merge.cwl
 
 software:
   - Sentieon@202112.06
@@ -17,18 +18,8 @@ software:
 input:
 
   # Required file arguments
-  input_file_bam:
+  input_files_bam:
     argument_type: file.bam
-
-  genome_reference_fasta:
-    argument_type: file.fa
-
-  known_sites_indel:
-    argument_type: file.vcf_gz
-
-  # Optional Parameter argument
-  nthreads:
-    argument_type: parameter.integer
 
 ## Output information #######################################
 #     Output files and quality controls

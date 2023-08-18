@@ -51,6 +51,13 @@ inputs:
          where the realignment is necessary. |
          Expect a compressed VCF with the corresponding index file
 
+  - id: nthreads
+    type: int
+    default: null
+    inputBinding:
+      position: 4
+    doc: Number of threads to use for compression/decompression [nproc]
+
 outputs:
   - id: output_file_bam
     type: File

@@ -1,39 +1,32 @@
 #!/usr/bin/env bash
 
 # *******************************************
-# Realign indels in a sorted BAM file
-# for a single sample.
-# The sorted BAM file need to be pre-processed
-# to add read groups and mark duplicates.
+# Take any number of BAM files as input and merge them
+# producing a final merged BAM file.
 # *******************************************
 
-## Command line arguments
-# Input BAM
-deduped_bam=$1
-
-# Reference data files
-reference_fa=$2
-known_sites_indel=$3
-
 ## Other settings
-nt=${4:-$(nproc)} # number of threads to use in computation,
-                  # set to number of cores in the server if not specified
-
-## SymLink to reference files
-fasta="reference.fasta"
-
-# FASTA reference
-ln -s ${reference_fa}.fa reference.fasta
-ln -s ${reference_fa}.fa.fai reference.fasta.fai
-ln -s ${reference_fa}.dict reference.dict
+nt=$(nproc) # number of threads to use in computation,
+            # set to number of cores in the server
 
 # ******************************************
-# 1. Indel realignment
+# 1. Create list of input files
 # ******************************************
-sentieon driver -r $fasta -t $nt -i $deduped_bam --algo Realigner -k $known_sites_indel realigned.bam || exit 1
+input_files=""
+
+# Adding files
+for arg in $@;
+  do
+    input_files+=" -i $arg"
+  done
+
+# *****************************************************************************
+# 2. Merging
+# *****************************************************************************
+sentieon driver -t $nt $input_files --algo ReadWriter merged.bam || exit 1
 
 # ******************************************
-# 2. Check realigned BAM integrity.
+# 3. Check merged BAM integrity.
 # ******************************************
 py_script="
 import sys, os
@@ -51,7 +44,7 @@ def check_EOF(filename):
     else:
         sys.stderr.write('EOF is present\n')
 
-check_EOF('realigned.bam')
+check_EOF('merged.bam')
 "
 
 python -c "$py_script" || exit 1
