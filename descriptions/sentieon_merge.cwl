@@ -29,10 +29,7 @@ inputs:
       position: 1
     secondaryFiles:
       - .bai
-    doc: List of input BAM files with the corresponding index file. |
-         Must be sorted by coordinates, |
-         and pre-processed to add read groups, mark duplicates, |
-         and realign indels
+    doc: List of input BAM files with the corresponding index file
 
 outputs:
   - id: output_file_bam

@@ -52,41 +52,45 @@ RUN ln -s samtools-1.17 samtools
 #######################################################################
 #     Scripts
 #######################################################################
-## TNhaplotyper2_tumor_only
-COPY TNhaplotyper2_tumor_only.sh .
-RUN chmod +x TNhaplotyper2_tumor_only.sh
-
 ## sentieon_bwa-mem_sort
 COPY sentieon_bwa-mem_sort.sh .
 RUN chmod +x sentieon_bwa-mem_sort.sh
-
-## sentieon_LocusCollector
-COPY sentieon_LocusCollector.sh .
-RUN chmod +x sentieon_LocusCollector.sh
-
-## sentieon_LocusCollector_apply
-COPY sentieon_LocusCollector_apply.sh .
-RUN chmod +x sentieon_LocusCollector_apply.sh
 
 ## sentieon_Dedup
 COPY sentieon_Dedup.sh .
 RUN chmod +x sentieon_Dedup.sh
 
-## sentieon_Realigner
-COPY sentieon_Realigner.sh .
-RUN chmod +x sentieon_Realigner.sh
+## sentieon_LocusCollector_apply
+COPY sentieon_LocusCollector_apply.sh .
+RUN chmod +x sentieon_LocusCollector_apply.sh
 
-## sentieon_QualCal
-COPY sentieon_QualCal.sh .
-RUN chmod +x sentieon_QualCal.sh
+## sentieon_LocusCollector
+COPY sentieon_LocusCollector.sh .
+RUN chmod +x sentieon_LocusCollector.sh
+
+## sentieon_merge
+COPY sentieon_merge.sh .
+RUN chmod +x sentieon_merge.sh
+
+## sentieon_minimap2_sort
+COPY sentieon_minimap2_sort.sh .
+RUN chmod +x sentieon_minimap2_sort.sh
 
 ## sentieon_QualCal_merge
 COPY sentieon_QualCal_merge.sh .
 RUN chmod +x sentieon_QualCal_merge.sh
 
-## sentieon_minimap2_sort
-COPY sentieon_minimap2_sort.sh .
-RUN chmod +x sentieon_minimap2_sort.sh
+## sentieon_QualCal
+COPY sentieon_QualCal.sh .
+RUN chmod +x sentieon_QualCal.sh
+
+## sentieon_Realigner
+COPY sentieon_Realigner.sh .
+RUN chmod +x sentieon_Realigner.sh
+
+## TNhaplotyper2_tumor_only
+COPY TNhaplotyper2_tumor_only.sh .
+RUN chmod +x TNhaplotyper2_tumor_only.sh
 
 #######################################################################
 #     Updating env
