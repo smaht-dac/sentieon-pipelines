@@ -34,7 +34,7 @@ inputs:
       - .fai
     inputBinding:
       position: 2
-    doc: Genome reference in FASTA format
+    doc: Genome reference in FASTA format with the corresponding index files
 
   - id: preset
     type: string
