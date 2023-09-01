@@ -19,8 +19,9 @@ input:
   genome_reference_fasta:
     argument_type: file.fa
     files:
-      - complete-reference-fasta-plus-hs37d5_g1k@GRCh37
-      #- complete-reference-fasta-no-alt@GCA_000001405.15_GRCh38_no_decoy
+      - complete-reference-fasta-no-alt@GCA_000001405.15_GRCh38_no_decoy
+      #- complete-reference-fasta-plus-hs37d5_g1k@GRCh37 # Hg19
+      
 
   # Required parameter argument
   preset:
