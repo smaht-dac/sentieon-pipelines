@@ -29,6 +29,9 @@ inputs:
 
   - id: genome_reference_fasta
     type: File
+    secondaryFiles:
+      - ^.dict
+      - .fai
     inputBinding:
       position: 2
     doc: Genome reference in FASTA format
