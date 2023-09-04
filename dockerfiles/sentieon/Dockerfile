@@ -64,17 +64,9 @@ RUN chmod +x sentieon_Dedup.sh
 COPY sentieon_LocusCollector_apply.sh .
 RUN chmod +x sentieon_LocusCollector_apply.sh
 
-## sentieon_LocusCollector_applyByShard.sh
-COPY sentieon_LocusCollector_applyByShard.sh .
-RUN chmod +x sentieon_LocusCollector_applyByShard.sh
-
 ## sentieon_LocusCollector
 COPY sentieon_LocusCollector.sh .
 RUN chmod +x sentieon_LocusCollector.sh
-
-## sentieon_merge
-COPY sentieon_merge.sh .
-RUN chmod +x sentieon_merge.sh
 
 ## sentieon_minimap2_sort
 COPY sentieon_minimap2_sort.sh .

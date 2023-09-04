@@ -74,5 +74,4 @@ outputs:
 
 doc: |
   Run Sentieon to calculate (QualCal) |
-  and apply base and indel scores recalibration |
-  in input BAM file
+  and apply base and indel scores recalibration to input BAM file

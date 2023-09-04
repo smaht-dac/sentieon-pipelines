@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # *******************************************
-# Generate a sorted BAM file from long reads FASTQ
+# Generate an alignment BAM file from long reads FASTQ
 # file for a single sample.
 # The file will be sorted by coordinates.
 # *******************************************
@@ -36,7 +36,7 @@ nt=$(nproc) # number of threads to use in computation,
 # ******************************************
 # 2. Index BAM
 # ******************************************
-samtools index sorted.bam || exit 1
+samtools index -@ $nt sorted.bam || exit 1
 
 # ******************************************
 # 3. Check BAM integrity.

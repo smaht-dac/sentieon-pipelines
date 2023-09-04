@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 # *******************************************
-# Generate a sorted BAM file from paired FASTQ
+# Generate an alignment BAM file from paired FASTQ
 # files for a single sample.
-# The file will be sorted by coordinates.
+# The BAM file will be sorted by coordinates.
 # *******************************************
 
 ## Command line arguments
 # Input FASTQ files
-fastq_1=$1
-fastq_2=$2
+fastq_r1=$1
+fastq_r2=$2
 
 # Reference data files
 reference_fa=$3
@@ -46,7 +46,7 @@ fi
 # To have number of threads independent results,
 # add chunk size option -K 10000000.
 # ******************************************
-( sentieon bwa mem -t $nt -K 10000000 $fasta $fastq_1 $fastq_2 || exit 1 ) | samtools sort -@ $nt -o sorted.bam - || exit 1
+( sentieon bwa mem -t $nt -K 10000000 $fasta $fastq_r1 $fastq_r2 || exit 1 ) | samtools sort -@ $nt -o sorted.bam - || exit 1
 
 # ******************************************
 # 2. Index BAM
