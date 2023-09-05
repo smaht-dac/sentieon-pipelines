@@ -46,7 +46,7 @@ fi
 # To have number of threads independent results,
 # add chunk size option -K 10000000.
 # ******************************************
-( sentieon bwa mem -t $nt -K 10000000 $fasta $fastq_r1 $fastq_r2 || exit 1 ) | samtools sort -@ $nt -o sorted.bam - || exit 1
+( sentieon bwa mem -t $nt -K 10000000 $fasta $fastq_r1 $fastq_r2 || exit 1 ) | samtools sort --no-PG -@ $nt -o sorted.bam - || exit 1
 
 # ******************************************
 # 2. Index BAM

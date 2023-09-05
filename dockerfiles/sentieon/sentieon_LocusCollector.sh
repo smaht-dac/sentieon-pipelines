@@ -21,7 +21,7 @@ shard_index=$2
 output_file=$3
 
 # Input BAM files
-shift 3 # $@ stores all the input files
+shift 3 # $@ store all the input files
 
 ## Other settings
 nt=$(nproc) # number of threads to use in computation,

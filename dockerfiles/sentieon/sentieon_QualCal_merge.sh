@@ -16,7 +16,7 @@ known_sites_snp=$2
 known_sites_indel=$3
 
 # Input BAM files
-shift 3 # $@ stores all the input files
+shift 3 # $@ store all the input files
 
 ## Other settings
 nt=$(nproc) # number of threads to use in computation,
