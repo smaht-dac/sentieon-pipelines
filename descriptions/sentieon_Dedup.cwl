@@ -31,8 +31,8 @@ inputs:
          and pre-processed to add read groups
 
   - id: optical_dup_pix_dist
-    default: 2500
     type: int
+    default: 2500
     inputBinding:
       position: 2
     doc: The maximum offset between two duplicate clusters in order |
@@ -52,4 +52,4 @@ outputs:
       - .bai
 
 doc: |
-  Run Sentieon to mark duplicates (Dedup) in input BAM file
+  Run Sentieon to mark duplicates (LocusCollector and Dedup) in input BAM file

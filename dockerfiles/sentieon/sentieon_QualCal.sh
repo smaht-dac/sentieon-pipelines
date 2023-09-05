@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 # *******************************************
-# Generate an analysis-ready BAM
-# from a sorted BAM file for a single sample.
-# The sorted BAM file need to be pre-processed
+# Perform base scores and indels recalibration to
+# generate an analysis-ready BAM for a single sample.
+# The input BAM file need to be sorted and pre-processed
 # to add read groups, mark duplicates, and realign indels.
 # *******************************************
 
 ## Command line arguments
 # Input BAM
-realigned_bam=$1
+input_bam=$1
 
 # Reference data files
 reference_fa=$2
@@ -33,8 +33,8 @@ ln -s ${reference_fa}.dict reference.dict
 # https://support.sentieon.com/appnotes/arguments/#bqsr-calculate-recalibration
 # Not generating RECAL_DATA.TABLE.POST for plotting, just need recal_data.table.
 # *****************************************************************************
-sentieon driver -r $fasta -t $nt -i $realigned_bam --algo QualCal -k $known_sites_snp -k $known_sites_indel recal_data.table || exit 1
-sentieon driver -r $fasta -t $nt -i $realigned_bam -q recal_data.table --algo ReadWriter recalibrated.bam || exit 1
+sentieon driver -r $fasta -t $nt -i $input_bam --algo QualCal -k $known_sites_snp -k $known_sites_indel recal_data.table || exit 1
+sentieon driver -r $fasta -t $nt -i $input_bam -q recal_data.table --algo ReadWriter recalibrated.bam || exit 1
 
 # ******************************************
 # 2. Check recalibrated BAM integrity.

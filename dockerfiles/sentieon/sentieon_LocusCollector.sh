@@ -2,9 +2,9 @@
 
 # *******************************************
 # Create duplicates summary for a single sample.
-# Accept a list of BAM files to enable processing by lane.
 # The BAM files need to be sorted and pre-processed
 # to add read groups.
+# Accept a list of BAM files to enable processing by lane.
 # Implemented to run in distributed mode using shards.
 # *******************************************
 
@@ -21,7 +21,7 @@ shard_index=$2
 output_file=$3
 
 # Input BAM files
-shift 3 # $@ stores all the input files
+shift 3 # $@ store all the input files
 
 ## Other settings
 nt=$(nproc) # number of threads to use in computation,

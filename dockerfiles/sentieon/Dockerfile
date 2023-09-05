@@ -68,10 +68,6 @@ RUN chmod +x sentieon_LocusCollector_apply.sh
 COPY sentieon_LocusCollector.sh .
 RUN chmod +x sentieon_LocusCollector.sh
 
-## sentieon_merge
-COPY sentieon_merge.sh .
-RUN chmod +x sentieon_merge.sh
-
 ## sentieon_minimap2_sort
 COPY sentieon_minimap2_sort.sh .
 RUN chmod +x sentieon_minimap2_sort.sh

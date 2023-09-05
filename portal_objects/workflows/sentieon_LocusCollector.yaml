@@ -2,7 +2,7 @@
 #     General information for the workflow
 #############################################################
 name: sentieon_LocusCollector
-description: Run Sentieon to create duplicate metrics with LocusCollector algorithm. |
+description: Run Sentieon to calculate duplicate metrics with LocusCollector algorithm. |
              Accept a list of BAM files to enable processing by lane. |
              Implemented to run on shards in distributed mode
 

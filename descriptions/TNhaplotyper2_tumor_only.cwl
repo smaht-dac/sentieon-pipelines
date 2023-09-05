@@ -57,16 +57,16 @@ inputs:
          https://console.cloud.google.com/storage/browser/gatk-best-practices
 
   - id: panel_of_normal
-   type: File
-   default: null
-   secondaryFiles:
-     - .tbi
-   inputBinding:
-     prefix: -p
-   doc: Panel of normal in compressed VCF format (gzip|bgzip) |
-        with the corresponding index file. |
-        Can be downloaded from the Broad as part of GATK Best Practice resources |
-        https://console.cloud.google.com/storage/browser/gatk-best-practices
+    type: File
+    default: null
+    secondaryFiles:
+      - .tbi
+    inputBinding:
+      prefix: -p
+    doc: Panel of normal in compressed VCF format (gzip|bgzip) |
+         with the corresponding index file. |
+         Can be downloaded from the Broad as part of GATK Best Practice resources |
+         https://console.cloud.google.com/storage/browser/gatk-best-practices
 
   - id: output_file_prefix
     type: string

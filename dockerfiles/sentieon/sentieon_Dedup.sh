@@ -9,7 +9,7 @@
 
 ## Command line arguments
 # Input BAM
-sorted_bam=$1
+input_bam=$1
 
 # Other
 optical_dup_pix_dist=$2
@@ -27,8 +27,8 @@ nt=$(nproc) # number of threads to use in computation,
 # By ommiting the --rmdup option in Dedup
 # we are only marking to match GATK Best Practices.
 # ******************************************
-sentieon driver -t $nt -i $sorted_bam --algo LocusCollector --fun score_info score.txt || exit 1
-sentieon driver -t $nt -i $sorted_bam --algo Dedup --optical_dup_pix_dist $optical_dup_pix_dist --score_info score.txt --metrics dedup_metrics.txt deduped.bam || exit 1
+sentieon driver -t $nt -i $input_bam --algo LocusCollector --fun score_info score.txt || exit 1
+sentieon driver -t $nt -i $input_bam --algo Dedup --optical_dup_pix_dist $optical_dup_pix_dist --score_info score.txt --metrics dedup_metrics.txt deduped.bam || exit 1
 
 # ******************************************
 # 2. Check deduped BAM integrity.

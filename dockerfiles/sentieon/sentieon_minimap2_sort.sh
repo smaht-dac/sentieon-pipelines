@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # *******************************************
-# Generate a sorted BAM file from long reads FASTQ
+# Generate an alignment BAM file from long reads FASTQ
 # file for a single sample.
 # The file will be sorted by coordinates.
 # *******************************************
@@ -31,12 +31,12 @@ nt=$(nproc) # number of threads to use in computation,
 # 1. Mapping reads with minimap2 and
 # sort by coordinates.
 # ******************************************
-( sentieon minimap2 -t $nt -L -ax $preset $reference_fa $fastq || exit 1 ) | samtools sort -@ $nt -o sorted.bam - || exit 1
+( sentieon minimap2 -t $nt -L -ax $preset $reference_fa $fastq || exit 1 ) | samtools sort --no-PG -@ $nt -o sorted.bam - || exit 1
 
 # ******************************************
 # 2. Index BAM
 # ******************************************
-samtools index sorted.bam || exit 1
+samtools index -@ $nt sorted.bam || exit 1
 
 # ******************************************
 # 3. Check BAM integrity.

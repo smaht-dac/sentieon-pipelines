@@ -9,7 +9,7 @@
 
 ## Command line arguments
 # Input BAM
-deduped_bam=$1
+input_bam=$1
 
 # Reference data files
 reference_fa=$2
@@ -30,7 +30,7 @@ ln -s ${reference_fa}.dict reference.dict
 # ******************************************
 # 1. Indel realignment
 # ******************************************
-sentieon driver -r $fasta -t $nt -i $deduped_bam --algo Realigner -k $known_sites_indel realigned.bam || exit 1
+sentieon driver -r $fasta -t $nt -i $input_bam --algo Realigner -k $known_sites_indel realigned.bam || exit 1
 
 # ******************************************
 # 2. Check realigned BAM integrity.

@@ -66,6 +66,6 @@ outputs:
       - .tbi
 
 doc: |
-  Run Sentieon to create duplicate metrics with LocusCollector algorithm. |
+  Run Sentieon to calculate duplicate metrics with LocusCollector algorithm. |
   Accept a list of BAM files to enable processing by lane. |
   Implemented to run on shards in distributed mode
