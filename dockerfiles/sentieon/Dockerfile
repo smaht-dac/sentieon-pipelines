@@ -33,9 +33,9 @@ ENV LC_ALL=en_US.UTF-8
 #     Software
 #######################################################################
 ## Sentieon install
-RUN wget https://s3.amazonaws.com/sentieon-release/software/sentieon-genomics-202112.06.tar.gz && \
-    tar -xzvf sentieon-genomics-202112.06.tar.gz && \
-    ln -s sentieon-genomics-202112.06 sentieon
+RUN wget https://s3.amazonaws.com/sentieon-release/software/sentieon-genomics-202308.tar.gz && \
+    tar -xzvf sentieon-genomics-202308.tar.gz && \
+    ln -s sentieon-genomics-202308 sentieon
 
 ## Samtools install
 RUN wget https://github.com/samtools/samtools/releases/download/1.17/samtools-1.17.tar.bz2 && \

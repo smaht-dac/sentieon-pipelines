@@ -10,7 +10,7 @@ runner:
   main: sentieon_minimap2_sort.cwl
 
 software:
-  - Sentieon@202112.06
+  - Sentieon@202308
 
 ## Input information ########################################
 #     Input files and parameters
