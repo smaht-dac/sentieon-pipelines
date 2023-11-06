@@ -6,6 +6,9 @@ description: Run Sentieon TNhaplotyper2 and TNfilter algorithms for tumor only. 
              It is possible to specify a panel of normal and a file with population allele frequencies in VCF format. |
              Produce raw and filtered calls in VCF format
 
+category:
+  - Variant Calling
+
 ## General arguments ########################################
 #     Pipeline input, reference files, and general arguments
 #       define all arguments for the pipeline here
@@ -75,10 +78,24 @@ workflows:
 
       # File output
       output_file_vcf_gz:
-        file_type: TNhaplotyper2 output VCF
+        description: TNhaplotyper2 output VCF
+        data_category:
+          - Variant Calls
+        data_type:
+          - Somatic Variant Calls
+        variant_types:
+          - Single Nucleotide Variants
+          - Small Insertions-Deletions
 
       output_file_filtered_vcf_gz:
-        file_type: TNfilter output VCF
+        description: TNfilter output VCF
+        data_category:
+          - Variant Calls
+        data_type:
+          - Somatic Variant Calls
+        variant_types:
+          - Single Nucleotide Variants
+          - Small Insertions-Deletions
 
     ## EC2 Configuration to use ########
     ####################################
@@ -96,7 +113,7 @@ workflows:
         - m6i.8xlarge
         - m6i.12xlarge
       ebs_size: 1.5x
-      EBS_optimized: True
+      ebs_optimized: True
       spot_instance: True
       run_name: run_TNhaplotyper2_tumor_only
       behavior_on_capacity_limit: wait_and_retry

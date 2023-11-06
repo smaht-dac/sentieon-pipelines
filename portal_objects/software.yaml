@@ -4,3 +4,8 @@
 name: Sentieon
 version: '202308'
 source_url: https://www.sentieon.com
+category:
+  - Alignment
+  - Variant Calling
+  - Format Conversion
+  - Alignment Manipulation

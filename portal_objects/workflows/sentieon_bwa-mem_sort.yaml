@@ -12,6 +12,9 @@ runner:
 software:
   - Sentieon@202308
 
+category:
+  - Alignment
+
 ## Input information ########################################
 #     Input files and parameters
 #############################################################
@@ -19,10 +22,10 @@ input:
 
   # Required file arguments
   input_file_r1_fastq_gz:
-    argument_type: file.fastq
+    argument_type: file.fastq_gz
 
   input_file_r2_fastq_gz:
-    argument_type: file.fastq
+    argument_type: file.fastq_gz
 
   genome_reference_fasta:
     argument_type: file.fa
@@ -39,4 +42,4 @@ output:
   output_file_bam:
     argument_type: file.bam
     secondary_files:
-      - bai
+      - bam_bai
