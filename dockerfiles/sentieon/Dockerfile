@@ -88,9 +88,9 @@ RUN chmod +x sentieon_Realigner.sh
 COPY TNhaplotyper2_tumor_only.sh .
 RUN chmod +x TNhaplotyper2_tumor_only.sh
 
-## TNhaplotyper2_tumor_only_distributed
-COPY TNhaplotyper2_tumor_only_distributed.sh .
-RUN chmod +x TNhaplotyper2_tumor_only_distributed.sh
+## sentieon_TNhaplotyper2
+COPY sentieon_TNhaplotyper2.sh .
+RUN chmod +x sentieon_TNhaplotyper2.sh
 
 #######################################################################
 #     Updating env

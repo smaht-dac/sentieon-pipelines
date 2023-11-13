@@ -17,7 +17,7 @@ hints:
   - class: DockerRequirement
     dockerPull: ACCOUNT/sentieon:VERSION
 
-baseCommand: [TNhaplotyper2_tumor_only_distributed.sh]
+baseCommand: [sentieon_TNhaplotyper2.sh]
 
 inputs:
   - id: shards_file_txt

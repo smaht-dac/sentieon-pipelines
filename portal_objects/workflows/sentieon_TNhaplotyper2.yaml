@@ -1,7 +1,7 @@
 ## Workflow information #####################################
 #     General information for the workflow
 #############################################################
-name: TNhaplotyper2_tumor_only_distributed
+name: sentieon_TNhaplotyper2
 description: Run Sentieon TNhaplotyper2 algorithm for tumor only. |
              Require a file with population allele frequencies in VCF format. |
              Accept a list of BAM files and produce raw calls in VCF format. |
@@ -9,7 +9,7 @@ description: Run Sentieon TNhaplotyper2 algorithm for tumor only. |
 
 runner:
   language: cwl
-  main: TNhaplotyper2_tumor_only_distributed.cwl
+  main: sentieon_TNhaplotyper2.cwl
 
 software:
   - Sentieon@202308
