@@ -64,13 +64,21 @@ inputs:
       position: 5
     doc: Name of the sample
 
+  - id: interval_padding
+    type: int
+    default: 150
+    # default is one read length for standard illumina sequencing
+    inputBinding:
+      position: 6
+    doc: Adds PADDING_SIZE bases padding to the edges of the input intervals
+
   - id: input_files_bam
     type:
       -
         items: File
         type: array
     inputBinding:
-      position: 6
+      position: 7
     secondaryFiles:
       - .bai
     doc: List of input BAM files with the corresponding index file. |

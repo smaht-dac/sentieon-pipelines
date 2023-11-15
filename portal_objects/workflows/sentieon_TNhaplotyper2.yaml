@@ -42,6 +42,10 @@ input:
   sample_name:
     argument_type: parameter.string
 
+  # Optional parameter arguments
+  interval_padding:
+    argument_type: parameter.integer
+
 ## Output information #######################################
 #     Output files and quality controls
 #############################################################

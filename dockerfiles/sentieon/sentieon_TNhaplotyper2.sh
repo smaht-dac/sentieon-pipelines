@@ -20,9 +20,10 @@ population_allele_frequencies=$4
 
 # Other arguments
 sample_name=$5
+interval_padding=$6
 
 # Input BAM files
-shift 5 # $@ store all the input files
+shift 6 # $@ store all the input files
 
 ## Other settings
 nt=$(nproc) # number of threads to use in computation,
@@ -56,6 +57,7 @@ while read -r line;
 # 1. Run TNhaplotyper2 command line
 # ******************************************
 sentieon driver -t $nt -r $genome_reference_fasta $input_files $regions \
+         --interval_padding $interval_padding \
          --algo TNhaplotyper2 --tumor_sample $sample_name \
          --germline_vcf $population_allele_frequencies \
          output.vcf.gz || exit 1
