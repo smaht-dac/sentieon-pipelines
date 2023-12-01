@@ -33,9 +33,9 @@ ENV LC_ALL=en_US.UTF-8
 #     Software
 #######################################################################
 ## Sentieon install
-RUN wget https://s3.amazonaws.com/sentieon-release/software/sentieon-genomics-202308.tar.gz && \
-    tar -xzvf sentieon-genomics-202308.tar.gz && \
-    ln -s sentieon-genomics-202308 sentieon
+RUN wget https://s3.amazonaws.com/sentieon-release/software/sentieon-genomics-202308.01.tar.gz && \
+    tar -xzvf sentieon-genomics-202308.01.tar.gz && \
+    ln -s sentieon-genomics-202308.01 sentieon
 
 ## Samtools install
 RUN wget https://github.com/samtools/samtools/releases/download/1.17/samtools-1.17.tar.bz2 && \
@@ -91,6 +91,14 @@ RUN chmod +x TNhaplotyper2_tumor_only.sh
 ## sentieon_TNhaplotyper2
 COPY sentieon_TNhaplotyper2.sh .
 RUN chmod +x sentieon_TNhaplotyper2.sh
+
+## sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel
+COPY sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh .
+RUN chmod +x sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh
+
+## sentieon_merge_TNfilter
+COPY sentieon_merge_TNfilter.sh .
+RUN chmod +x sentieon_merge_TNfilter.sh
 
 #######################################################################
 #     Updating env
