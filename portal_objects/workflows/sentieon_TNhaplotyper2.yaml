@@ -1,21 +1,21 @@
 ## Workflow information #####################################
 #     General information for the workflow
 #############################################################
-name: sentieon_QualCal_merge
-description: Run Sentieon to calculate (QualCal) |
-             and apply base and indel scores recalibration. |
-             Takes any number of BAM files as input and process them together |
-             producing a final merged BAM file
+name: sentieon_TNhaplotyper2
+description: Run Sentieon TNhaplotyper2 algorithm for tumor only. |
+             Require a file with population allele frequencies in VCF format. |
+             Accept a list of BAM files and produce raw calls in VCF format. |
+             Implemented to run on shards in distributed mode
 
 runner:
   language: cwl
-  main: sentieon_QualCal_merge.cwl
+  main: sentieon_TNhaplotyper2.cwl
 
 software:
   - Sentieon@202308
 
 category:
-  - Alignment Manipulation
+  - Variant Calling
 
 ## Input information ########################################
 #     Input files and parameters
@@ -23,17 +23,28 @@ category:
 input:
 
   # Required file arguments
+  shards_file_txt:
+    argument_type: file.txt
+
   input_files_bam:
     argument_type: file.bam
 
   genome_reference_fasta:
     argument_type: file.fa
 
-  known_sites_snp:
+  population_allele_frequencies:
     argument_type: file.vcf_gz
 
-  known_sites_indel:
-    argument_type: file.vcf_gz
+  # Require parameter arguments
+  shard_index:
+    argument_type: parameter.string
+
+  sample_name:
+    argument_type: parameter.string
+
+  # Optional parameter arguments
+  interval_padding:
+    argument_type: parameter.integer
 
 ## Output information #######################################
 #     Output files and quality controls
@@ -41,7 +52,7 @@ input:
 output:
 
   # File output
-  output_file_bam:
-    argument_type: file.bam
+  output_file_vcf_gz:
+    argument_type: file.vcf_gz
     secondary_files:
-      - bam_bai
+      - vcf_gz_tbi

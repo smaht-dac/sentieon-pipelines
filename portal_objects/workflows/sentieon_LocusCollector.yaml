@@ -13,6 +13,9 @@ runner:
 software:
   - Sentieon@202308
 
+category:
+  - Alignment Manipulation
+
 ## Input information ########################################
 #     Input files and parameters
 #############################################################
