@@ -45,7 +45,7 @@ inputs:
     secondaryFiles:
       - .tbi
       - .stats
-    doc: List of input compressed VCF shards files with the corresponding index file
+    doc: List of input VCF shards with the corresponding index and stats files
 
   - id: input_files_priors
     type:
@@ -54,7 +54,7 @@ inputs:
         type: array
     inputBinding:
       position: 4
-    doc: List of input OrientationBias shards files
+    doc: List of input OrientationBias shards
 
   - id: input_files_contamination
     type:
@@ -63,7 +63,7 @@ inputs:
         type: array
     inputBinding:
       position: 5
-    doc: List of input ContaminationModel shards files
+    doc: List of input ContaminationModel shards
 
 outputs:
   - id: output_file_vcf_gz
