@@ -16,7 +16,7 @@ category:
 input:
 
   # File arguments
-  input_file_bam:
+  input_files_bam:
     argument_type: file.bam
     dimensionality: 1
 
@@ -56,7 +56,8 @@ workflows:
       # File arguments
       input_file_bam:
         argument_type: file.bam
-        input_dimension: 1
+        source_argument_name: input_files_bam
+        scatter: 1
 
       genome_reference_fasta:
         argument_type: file.fa
