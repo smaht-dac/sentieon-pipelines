@@ -6,6 +6,33 @@
 # Implemented to run in distributed mode using shards.
 # *******************************************
 
+## Functions
+generate_random_string() {
+    echo "$(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w 5 | head -n 1)"
+}
+
+process_bam_header() {
+    # Variable to store replacement @RG args
+    replace_rg_args=""
+
+    # Extract @RG lines from the header of the input BAM
+    input_bam="$1"
+    rg_lines=$(samtools view -H "$input_bam" | grep "^@RG")
+
+    # Loop through @RG lines and modify ID field
+    # Create --replace_rg arguments
+    while IFS= read -r rg_line; do
+        orig_rg_id=$(echo "$rg_line" | awk -F'\t' '/ID:/ {print $2}' | sed "s/ID://")
+        new_rg_id="${orig_rg_id}-$(generate_random_string)"
+        new_rg_line=$(echo "$rg_line" | cut -f 2- | sed "s/${orig_rg_id}/${new_rg_id}/")
+        formatted_new_rg_line=$(echo -e "$new_rg_line" | sed 's/\t/\\t/g')
+        replace_rg_args+=" --replace_rg ${orig_rg_id}='${formatted_new_rg_line}' "
+    done <<< "$rg_lines"
+
+    # Return replacement @RG args
+    echo "$replace_rg_args"
+}
+
 ## Command line arguments
 # Input shards file
 shards_file=$1
@@ -37,7 +64,8 @@ input_files=""
 # Adding files
 for file in $@;
   do
-    input_files+=" -i $file"
+    replace_args=$(process_bam_header $file)
+    input_files+=" $replace_args -i $file "
   done
 
 # ******************************************
@@ -54,14 +82,24 @@ while read -r line;
   done <SHARDS_LIST
 
 # ******************************************
-# 3. Run TNhaplotyper2 command line
+# 3. TNhaplotyper2 command line
 # ******************************************
-sentieon driver -t $nt -r $genome_reference_fasta $input_files $regions \
-         --algo TNhaplotyper2 --tumor_sample $sample_name \
-         --germline_vcf $population_allele_frequencies \
-         output.vcf.gz \
-         --algo OrientationBias --tumor_sample $sample_name \
-         output.priors \
-         --algo ContaminationModel --tumor_sample $sample_name \
-         -v $population_allele_frequencies \
-         output.contamination || exit 1
+command="sentieon driver -t $nt -r $genome_reference_fasta $input_files $regions"
+command+=" --algo TNhaplotyper2 --tumor_sample $sample_name --germline_vcf $population_allele_frequencies output.vcf.gz"
+command+=" --algo OrientationBias --tumor_sample $sample_name output.priors"
+command+=" --algo ContaminationModel --tumor_sample $sample_name -v $population_allele_frequencies output.contamination"
+
+# ******************************************
+# 4. Run TNhaplotyper2 command line
+# ******************************************
+eval $command || exit 1
+
+# sentieon driver -t $nt -r $genome_reference_fasta $input_files $regions \
+#          --algo TNhaplotyper2 --tumor_sample $sample_name \
+#          --germline_vcf $population_allele_frequencies \
+#          output.vcf.gz \
+#          --algo OrientationBias --tumor_sample $sample_name \
+#          output.priors \
+#          --algo ContaminationModel --tumor_sample $sample_name \
+#          -v $population_allele_frequencies \
+#          output.contamination || exit 1

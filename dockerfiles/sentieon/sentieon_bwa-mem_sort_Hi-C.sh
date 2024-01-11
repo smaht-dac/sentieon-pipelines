@@ -45,8 +45,14 @@ fi
 # the number of threads used.
 # To have number of threads independent results,
 # add chunk size option -K 10000000.
+#
+# Hi-C parameters:
+#   -S skip mate rescue
+#   -P skip pairing; mate rescue performed unless -S also in use
+#   -5 for split alignment, take the alignment with the smallest coordinate as primary
+#   -M mark shorter split hits as secondary
 # ******************************************
-( sentieon bwa mem -t $nt -K 10000000 $fasta $fastq_r1 $fastq_r2 || exit 1 ) | samtools sort --no-PG -@ $nt -o sorted.bam - || exit 1
+( sentieon bwa mem -SP5M -t $nt -K 10000000 $fasta $fastq_r1 $fastq_r2 || exit 1 ) | samtools sort --no-PG -@ $nt -o sorted.bam - || exit 1
 
 # ******************************************
 # 2. Index BAM

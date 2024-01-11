@@ -1,0 +1,46 @@
+## Workflow information #####################################
+#     General information for the workflow
+#############################################################
+name: sentieon_bwa-mem_sort
+description: Run Sentieon BWA-MEM on paired FASTQ files. |
+             Add flags for Hi-C data. |
+             Sort the alignment BAM file by coordinates
+
+runner:
+  language: cwl
+  main: sentieon_bwa-mem_sort.cwl
+
+software:
+  - Sentieon@202308
+
+category:
+  - Alignment
+
+## Input information ########################################
+#     Input files and parameters
+#############################################################
+input:
+
+  # Required file arguments
+  input_file_r1_fastq_gz:
+    argument_type: file.fastq_gz
+
+  input_file_r2_fastq_gz:
+    argument_type: file.fastq_gz
+
+  genome_reference_fasta:
+    argument_type: file.fa
+
+  genome_reference_bwt:
+    argument_type: file.bwt
+
+## Output information #######################################
+#     Output files and quality controls
+#############################################################
+output:
+
+  # File output
+  output_file_bam:
+    argument_type: file.bam
+    secondary_files:
+      - bam_bai
