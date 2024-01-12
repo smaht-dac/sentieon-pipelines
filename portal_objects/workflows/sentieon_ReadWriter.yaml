@@ -1,0 +1,42 @@
+## Workflow information #####################################
+#     General information for the workflow
+#############################################################
+name: sentieon_ReadWriter
+description: Run Sentieon ReadWriter to merge multiple input files in BAM format. |
+             Multiple regions can be speficied to use for the merge
+
+runner:
+  language: cwl
+  main: sentieon_ReadWriter.cwl
+
+software:
+  - Sentieon@202308
+
+category:
+  - Alignment Manipulation
+
+## Input information ########################################
+#     Input files and parameters
+#############################################################
+input:
+
+  # Required file arguments
+  input_files_bam:
+    argument_type: file.bam
+
+  genome_reference_fasta:
+    argument_type: file.fa
+
+  regions:
+    argument_type: parameter.array
+
+## Output information #######################################
+#     Output files and quality controls
+#############################################################
+output:
+
+  # File output
+  output_file_bam:
+    argument_type: file.bam
+    secondary_files:
+      - bam_bai
