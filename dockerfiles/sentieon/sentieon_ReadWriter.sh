@@ -128,7 +128,7 @@ def check_EOF(filename):
     else:
         sys.stderr.write('EOF is present\n')
 
-check_EOF('recalibrated.bam')
+check_EOF('merged.bam')
 "
 
 python -c "$py_script" || exit 1

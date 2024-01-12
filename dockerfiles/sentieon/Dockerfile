@@ -100,6 +100,10 @@ RUN chmod +x sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh
 COPY sentieon_merge_TNfilter.sh .
 RUN chmod +x sentieon_merge_TNfilter.sh
 
+## sentieon_ReadWriter
+COPY sentieon_ReadWriter.sh .
+RUN chmod +x sentieon_ReadWriter.sh
+
 #######################################################################
 #     Updating env
 #######################################################################
