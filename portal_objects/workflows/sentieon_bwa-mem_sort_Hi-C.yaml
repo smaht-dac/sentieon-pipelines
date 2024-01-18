@@ -1,14 +1,14 @@
 ## Workflow information #####################################
 #     General information for the workflow
 #############################################################
-name: sentieon_bwa-mem_sort
+name: sentieon_bwa-mem_sort_Hi-C
 description: Run Sentieon BWA-MEM on paired FASTQ files. |
              Add flags for Hi-C data. |
              Sort the alignment BAM file by coordinates
 
 runner:
   language: cwl
-  main: sentieon_bwa-mem_sort.cwl
+  main: sentieon_bwa-mem_sort_Hi-C.cwl
 
 software:
   - Sentieon@202308

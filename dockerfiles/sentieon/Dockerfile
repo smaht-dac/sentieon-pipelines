@@ -52,6 +52,10 @@ RUN ln -s samtools-1.17 samtools
 #######################################################################
 #     Scripts
 #######################################################################
+## sentieon_bwa-mem_sort_Hi-C
+COPY sentieon_bwa-mem_sort_Hi-C.sh .
+RUN chmod +x sentieon_bwa-mem_sort_Hi-C.sh
+
 ## sentieon_bwa-mem_sort
 COPY sentieon_bwa-mem_sort.sh .
 RUN chmod +x sentieon_bwa-mem_sort.sh
