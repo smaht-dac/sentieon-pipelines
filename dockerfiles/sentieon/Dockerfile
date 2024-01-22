@@ -96,9 +96,17 @@ RUN chmod +x TNhaplotyper2_tumor_only.sh
 COPY sentieon_TNhaplotyper2.sh .
 RUN chmod +x sentieon_TNhaplotyper2.sh
 
+## sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal
+COPY sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal.sh .
+RUN chmod +x sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal.sh
+
 ## sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel
 COPY sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh .
 RUN chmod +x sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh
+
+## sentieon_merge_TNfilter_normal
+COPY sentieon_merge_TNfilter_normal.sh .
+RUN chmod +x sentieon_merge_TNfilter_normal.sh
 
 ## sentieon_merge_TNfilter
 COPY sentieon_merge_TNfilter.sh .
