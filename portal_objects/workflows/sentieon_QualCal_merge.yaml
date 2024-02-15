@@ -12,7 +12,7 @@ runner:
   main: sentieon_QualCal_merge.cwl
 
 software:
-  - Sentieon@202308
+  - Sentieon@202308.01
 
 category:
   - Alignment Manipulation

@@ -11,7 +11,7 @@ runner:
   main: TNhaplotyper2_tumor_only.cwl
 
 software:
-  - Sentieon@202308
+  - Sentieon@202308.01
 
 category:
   - Variant Calling
