@@ -27,6 +27,7 @@ input:
   genome_reference_fasta:
     argument_type: file.fa
 
+  # Optional parameter arguments
   regions:
     argument_type: parameter.array
 

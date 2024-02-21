@@ -45,6 +45,7 @@ inputs:
     doc: Genome reference in FASTA format with the corresponding index files
 
   - id: regions
+    default: null
     type:
       -
         items: string
