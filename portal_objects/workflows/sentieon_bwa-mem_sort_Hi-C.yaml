@@ -1,21 +1,20 @@
 ## Workflow information #####################################
 #     General information for the workflow
 #############################################################
-name: sentieon_QualCal_merge
-description: Run Sentieon to calculate (QualCal) |
-             and apply base and indel scores recalibration. |
-             Takes any number of BAM files as input and process them together |
-             producing a final merged BAM file
+name: sentieon_bwa-mem_sort_Hi-C
+description: Run Sentieon BWA-MEM on paired FASTQ files. |
+             Add flags for Hi-C data. |
+             Sort the alignment BAM file by coordinates
 
 runner:
   language: cwl
-  main: sentieon_QualCal_merge.cwl
+  main: sentieon_bwa-mem_sort_Hi-C.cwl
 
 software:
   - Sentieon@202308.01
 
 category:
-  - Alignment Manipulation
+  - Alignment
 
 ## Input information ########################################
 #     Input files and parameters
@@ -23,17 +22,17 @@ category:
 input:
 
   # Required file arguments
-  input_files_bam:
-    argument_type: file.bam
+  input_file_r1_fastq_gz:
+    argument_type: file.fastq_gz
+
+  input_file_r2_fastq_gz:
+    argument_type: file.fastq_gz
 
   genome_reference_fasta:
     argument_type: file.fa
 
-  known_sites_snp:
-    argument_type: file.vcf_gz
-
-  known_sites_indel:
-    argument_type: file.vcf_gz
+  genome_reference_bwt:
+    argument_type: file.bwt
 
 ## Output information #######################################
 #     Output files and quality controls

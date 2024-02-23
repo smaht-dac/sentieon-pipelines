@@ -52,6 +52,10 @@ RUN ln -s samtools-1.17 samtools
 #######################################################################
 #     Scripts
 #######################################################################
+## sentieon_bwa-mem_sort_Hi-C
+COPY sentieon_bwa-mem_sort_Hi-C.sh .
+RUN chmod +x sentieon_bwa-mem_sort_Hi-C.sh
+
 ## sentieon_bwa-mem_sort
 COPY sentieon_bwa-mem_sort.sh .
 RUN chmod +x sentieon_bwa-mem_sort.sh
@@ -92,13 +96,25 @@ RUN chmod +x TNhaplotyper2_tumor_only.sh
 COPY sentieon_TNhaplotyper2.sh .
 RUN chmod +x sentieon_TNhaplotyper2.sh
 
+## sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal
+COPY sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal.sh .
+RUN chmod +x sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal.sh
+
 ## sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel
 COPY sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh .
 RUN chmod +x sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh
 
+## sentieon_merge_TNfilter_normal
+COPY sentieon_merge_TNfilter_normal.sh .
+RUN chmod +x sentieon_merge_TNfilter_normal.sh
+
 ## sentieon_merge_TNfilter
 COPY sentieon_merge_TNfilter.sh .
 RUN chmod +x sentieon_merge_TNfilter.sh
+
+## sentieon_ReadWriter
+COPY sentieon_ReadWriter.sh .
+RUN chmod +x sentieon_ReadWriter.sh
 
 #######################################################################
 #     Updating env

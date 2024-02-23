@@ -13,7 +13,7 @@ runner:
   main: sentieon_LocusCollector_apply.cwl
 
 software:
-  - Sentieon@202308
+  - Sentieon@202308.01
 
 category:
   - Alignment Manipulation

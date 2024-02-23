@@ -1,15 +1,13 @@
 ## Workflow information #####################################
 #     General information for the workflow
 #############################################################
-name: sentieon_QualCal_merge
-description: Run Sentieon to calculate (QualCal) |
-             and apply base and indel scores recalibration. |
-             Takes any number of BAM files as input and process them together |
-             producing a final merged BAM file
+name: sentieon_ReadWriter
+description: Run Sentieon ReadWriter to merge multiple input files in BAM format. |
+             Multiple regions can be speficied to use for the merge
 
 runner:
   language: cwl
-  main: sentieon_QualCal_merge.cwl
+  main: sentieon_ReadWriter.cwl
 
 software:
   - Sentieon@202308.01
@@ -29,11 +27,9 @@ input:
   genome_reference_fasta:
     argument_type: file.fa
 
-  known_sites_snp:
-    argument_type: file.vcf_gz
-
-  known_sites_indel:
-    argument_type: file.vcf_gz
+  # Optional parameter arguments
+  regions:
+    argument_type: parameter.array
 
 ## Output information #######################################
 #     Output files and quality controls

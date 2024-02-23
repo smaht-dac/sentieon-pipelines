@@ -30,8 +30,16 @@ nt=$(nproc) # number of threads to use in computation,
 # ******************************************
 # 1. Mapping reads with minimap2 and
 # sort by coordinates.
+#
+# Extra flags:
+#   - soft clipping [-Y]
+#   - long cigars for tag CG [-L]
+#   - X/= cigars instead of M [--eqx]
+#   - no secondary alignments are produced [--secondary=no]
 # ******************************************
-( sentieon minimap2 -t $nt -L -ax $preset $reference_fa $fastq || exit 1 ) | samtools sort --no-PG -@ $nt -o sorted.bam - || exit 1
+opt="-Y -L --eqx --secondary=no"
+
+( sentieon minimap2 -t $nt $opt -ax $preset $reference_fa $fastq || exit 1 ) | samtools sort --no-PG -@ $nt -o sorted.bam - || exit 1
 
 # ******************************************
 # 2. Index BAM

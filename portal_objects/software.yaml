@@ -1,11 +1,41 @@
 ################################################################
-# Sentieon, 202308
+# Sentieon, 202308.01
 ################################################################
 name: Sentieon
-version: '202308'
+version: '202308.01'
 source_url: https://www.sentieon.com
 category:
   - Alignment
   - Variant Calling
   - Format Conversion
   - Alignment Manipulation
+
+---
+
+################################################################
+# Sentieon_BWA-MEM, 202308.01
+#   Only used for file naming
+################################################################
+name: Sentieon_BWA-MEM
+version: '202308.01'
+source_url: https://www.sentieon.com
+category:
+  - Alignment
+# Required for displaying in the file name
+code: sentieon_bwamem
+# This is required to sync with a previously generated object
+uuid: b42e44e5-a829-4687-aeff-65cd040b1528
+
+---
+
+################################################################
+# Sentieon_minimap2, 202308.01
+#   Only used for file naming
+################################################################
+name: Sentieon_minimap2
+version: '202308.01'
+source_url: https://www.sentieon.com
+category:
+  - Alignment
+# Required for displaying in the file name
+code: sentieon_minimap2

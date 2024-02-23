@@ -29,7 +29,7 @@ check_args()
     arg_names=($@)
     for arg_name in ${arg_names[@]}; do
         [ -z ${!arg_name} ] && \
-        echo "Mising Argument <${arg_name}>" 1>&2 && \
+        echo "Missing Argument <${arg_name}>" 1>&2 && \
         echo $USAGE 1>&2 && \
         exit 1
     done

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # *******************************************
-# Script to run TNhaplotyper2 on tumor only data.
+# Script to run TNhaplotyper2 on tumor-normal data.
 # Generate OrientationBias and ContaminationModel metrics.
 # Implemented to run in distributed mode using shards.
 # *******************************************
@@ -48,9 +48,10 @@ population_allele_frequencies=$4
 
 # Other arguments
 sample_name=$5
+normal_name=$6
 
 # Input BAM files
-shift 5 # $@ store all the input files
+shift 6 # $@ store all the input files
 
 ## Other settings
 nt=$(nproc) # number of threads to use in computation,
@@ -85,9 +86,9 @@ while read -r line;
 # 3. TNhaplotyper2 command line
 # ******************************************
 command="sentieon driver -t $nt -r $genome_reference_fasta $input_files $regions"
-command+=" --algo TNhaplotyper2 --tumor_sample $sample_name --germline_vcf $population_allele_frequencies output.vcf.gz"
+command+=" --algo TNhaplotyper2 --tumor_sample $sample_name --normal_sample $normal_name --germline_vcf $population_allele_frequencies output.vcf.gz"
 command+=" --algo OrientationBias --tumor_sample $sample_name output.priors"
-command+=" --algo ContaminationModel --tumor_sample $sample_name -v $population_allele_frequencies output.contamination"
+command+=" --algo ContaminationModel --tumor_sample $sample_name --normal_sample $normal_name -v $population_allele_frequencies output.contamination"
 
 # ******************************************
 # 4. Run TNhaplotyper2 command line
@@ -95,11 +96,11 @@ command+=" --algo ContaminationModel --tumor_sample $sample_name -v $population_
 eval $command || exit 1
 
 # sentieon driver -t $nt -r $genome_reference_fasta $input_files $regions \
-#          --algo TNhaplotyper2 --tumor_sample $sample_name \
+#          --algo TNhaplotyper2 --tumor_sample $sample_name --normal_sample $normal_name \
 #          --germline_vcf $population_allele_frequencies \
 #          output.vcf.gz \
 #          --algo OrientationBias --tumor_sample $sample_name \
 #          output.priors \
-#          --algo ContaminationModel --tumor_sample $sample_name \
+#          --algo ContaminationModel --tumor_sample $sample_name --normal_sample $normal_name \
 #          -v $population_allele_frequencies \
 #          output.contamination || exit 1
