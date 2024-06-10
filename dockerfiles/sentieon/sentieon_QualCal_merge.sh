@@ -47,7 +47,7 @@ for arg in $@;
 # Not generating RECAL_DATA.TABLE.POST for plotting, just need recal_data.table.
 # *****************************************************************************
 sentieon driver -r $fasta -t $nt $input_files --algo QualCal -k $known_sites_snp -k $known_sites_indel recal_data.table || exit 1
-sentieon driver -r $fasta -t $nt $input_files -q recal_data.table --algo ReadWriter recalibrated.bam || exit 1
+sentieon driver -r $fasta -t $nt $input_files --read_filter 'QualCalFilter,table=recal_data.table,keep_oq=true' --algo ReadWriter recalibrated.bam || exit 1
 
 # ******************************************
 # 3. Check recalibrated BAM integrity.
