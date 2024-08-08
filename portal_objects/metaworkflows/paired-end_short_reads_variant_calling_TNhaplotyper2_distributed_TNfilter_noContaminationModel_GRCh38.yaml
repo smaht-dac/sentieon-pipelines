@@ -1,10 +1,9 @@
 ## Pipeline information #####################################
 #     General information for the pipeline
 #############################################################
-name: paired-end_short_reads_variant_calling_TNhaplotyper2_distributed_TNfilter_GRCh38
+name: paired-end_short_reads_variant_calling_TNhaplotyper2_distributed_TNfilter_noContaminationModel_GRCh38
 description: Run Sentieon TNhaplotyper2 (Mutect2) algorithm for tumor only. |
              Run Sentieon TNfilter (FilterMutectCalls) algorithm for tumor only. |
-             Require a file with population allele frequencies in VCF format. |
              Accept a list of BAM files and produce raw calls in VCF format. |
              Implemented to run on shards in distributed mode
 
@@ -27,11 +26,6 @@ input:
     files:
       - complete-reference-fasta-no-alt@GCA_000001405.15_GRCh38_no_decoy
 
-  population_allele_frequencies:
-    argument_type: file.vcf_gz
-    files:
-      - af-only-gnomad-mutect2@GRCh38
-
   shards_file:
     argument_type: file.txt
     files:
@@ -51,9 +45,9 @@ input:
 workflows:
 
   ## Workflow definition #####################
-  #  sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel
+  #  sentieon_TNhaplotyper2_wOrientationBias
   ############################################
-  sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel:
+  sentieon_TNhaplotyper2_wOrientationBias:
 
     ## Lock shards #####################
     ####################################
@@ -72,9 +66,6 @@ workflows:
 
       genome_reference_fasta:
         argument_type: file.fa
-
-      population_allele_frequencies:
-        argument_type: file.vcf_gz
 
       # Parameter arguments
       sample_name:
@@ -113,14 +104,6 @@ workflows:
           - Statistics
         s3_lifecycle_category: no_storage
 
-      output_file_contamination:
-        description: sentieon ContaminationModel output TXT (shard)
-        data_category:
-          - Somatic Variant Calls
-        data_type:
-          - Statistics
-        s3_lifecycle_category: no_storage
-
     ## EC2 Configuration to use ########
     ####################################
     config:
@@ -141,13 +124,13 @@ workflows:
       #   for the final file with the calls per shards
       ebs_optimized: True
       spot_instance: True
-      run_name: run_sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel
+      run_name: run_sentieon_TNhaplotyper2_wOrientationBias
       behavior_on_capacity_limit: wait_and_retry
 
   ## Workflow definition #####################
-  #  sentieon_merge_TNfilter
+  #  sentieon_merge_TNfilter_noContaminationModel
   ############################################
-  sentieon_merge_TNfilter:
+  sentieon_merge_TNfilter_noContaminationModel:
 
     ## Specific arguments ##############
     ####################################
@@ -156,20 +139,14 @@ workflows:
       # File arguments
       input_files_vcf_gz:
         argument_type: file.vcf_gz
-        source: sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel
+        source: sentieon_TNhaplotyper2_wOrientationBias
         source_argument_name: output_file_vcf_gz
         gather_input: 1
 
       input_files_priors:
         argument_type: file.priors
-        source: sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel
+        source: sentieon_TNhaplotyper2_wOrientationBias
         source_argument_name: output_file_priors
-        gather_input: 1
-
-      input_files_contamination:
-        argument_type: file.contamination
-        source: sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel
-        source_argument_name: output_file_contamination
         gather_input: 1
 
       genome_reference_fasta:
@@ -208,5 +185,5 @@ workflows:
       ebs_size: "2.5x"
       ebs_optimized: True
       spot_instance: True
-      run_name: run_sentieon_merge_TNfilter
+      run_name: run_sentieon_merge_TNfilter_noContaminationModel
       behavior_on_capacity_limit: wait_and_retry
