@@ -17,7 +17,7 @@ hints:
   - class: DockerRequirement
     dockerPull: ACCOUNT/sentieon:VERSION
 
-baseCommand: [sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh]
+baseCommand: [sentieon_TNhaplotyper2_wOrientationBias.sh]
 
 inputs:
   - id: shards_file_txt
@@ -45,23 +45,10 @@ inputs:
       position: 3
     doc: Genome reference in FASTA format with the corresponding index files
 
-  - id: population_allele_frequencies
-    type: File
-    secondaryFiles:
-      - .tbi
-    inputBinding:
-      position: 4
-    doc: Population allele frequencies in compressed VCF format (gzip|bgzip) |
-         with the corresponding index file. |
-         Can be obtained by post-processing gnomAD data as described in |
-         https://support.sentieon.com/manual/TNseq_usage/tnseq, |
-         or downloaded from the Broad as part of GATK Best Practice resources |
-         https://console.cloud.google.com/storage/browser/gatk-best-practices
-
   - id: sample_name
     type: string
     inputBinding:
-      position: 5
+      position: 4
     doc: Name of the sample
 
   - id: input_files_bam
@@ -70,7 +57,7 @@ inputs:
         items: File
         type: array
     inputBinding:
-      position: 6
+      position: 5
     secondaryFiles:
       - .bai
     doc: List of input BAM files with the corresponding index file. |
@@ -91,14 +78,8 @@ outputs:
     outputBinding:
       glob: output.priors
 
-  - id: output_file_contamination
-    type: File
-    outputBinding:
-      glob: output.contamination
-
 doc: |
   Run Sentieon TNhaplotyper2 algorithm for tumor only. |
-  Run OrientationBias and ContaminationModel to generate metrics for TNfilter. |
-  Require a file with population allele frequencies in VCF format. |
+  Run OrientationBias to generate metrics for TNfilter. |
   Accept a list of BAM files and produce raw calls in VCF format. |
   Implemented to run on shards in distributed mode

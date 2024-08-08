@@ -2,7 +2,7 @@
 
 # *******************************************
 # Script to run TNhaplotyper2 on tumor only data.
-# Generate OrientationBias and ContaminationModel metrics.
+# Generate OrientationBias metrics.
 # Implemented to run in distributed mode using shards.
 # *******************************************
 
@@ -44,13 +44,12 @@ shard_index=$2
 
 # Reference files
 genome_reference_fasta=$3
-population_allele_frequencies=$4
 
 # Other arguments
-sample_name=$5
+sample_name=$4
 
 # Input BAM files
-shift 5 # $@ store all the input files
+shift 4 # $@ store all the input files
 
 ## Other settings
 nt=$(nproc) # number of threads to use in computation,
@@ -85,9 +84,8 @@ while read -r line;
 # 3. TNhaplotyper2 command line
 # ******************************************
 command="sentieon driver -t $nt -r $genome_reference_fasta $input_files $regions"
-command+=" --algo TNhaplotyper2 --tumor_sample $sample_name --germline_vcf $population_allele_frequencies output.vcf.gz"
+command+=" --algo TNhaplotyper2 --tumor_sample $sample_name output.vcf.gz"
 command+=" --algo OrientationBias --tumor_sample $sample_name output.priors"
-command+=" --algo ContaminationModel --tumor_sample $sample_name -v $population_allele_frequencies output.contamination"
 
 # ******************************************
 # 4. Run TNhaplotyper2 command line
@@ -96,10 +94,6 @@ eval $command || exit 1
 
 # sentieon driver -t $nt -r $genome_reference_fasta $input_files $regions \
 #          --algo TNhaplotyper2 --tumor_sample $sample_name \
-#          --germline_vcf $population_allele_frequencies \
 #          output.vcf.gz \
 #          --algo OrientationBias --tumor_sample $sample_name \
-#          output.priors \
-#          --algo ContaminationModel --tumor_sample $sample_name \
-#          -v $population_allele_frequencies \
-#          output.contamination || exit 1
+#          output.priors || exit 1

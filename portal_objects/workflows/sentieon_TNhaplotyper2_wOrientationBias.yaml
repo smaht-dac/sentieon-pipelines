@@ -1,16 +1,15 @@
 ## Workflow information #####################################
 #     General information for the workflow
 #############################################################
-name: sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel
+name: sentieon_TNhaplotyper2_wOrientationBias
 description: Run Sentieon TNhaplotyper2 algorithm for tumor only. |
-             Run OrientationBias and ContaminationModel to generate metrics for TNfilter. |
-             Require a file with population allele frequencies in VCF format. |
+             Run OrientationBias to generate metrics for TNfilter. |
              Accept a list of BAM files and produce raw calls in VCF format. |
              Implemented to run on shards in distributed mode
 
 runner:
   language: cwl
-  main: sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.cwl
+  main: sentieon_TNhaplotyper2_wOrientationBias.cwl
 
 software:
   - Sentieon@202308.01
@@ -33,9 +32,6 @@ input:
   genome_reference_fasta:
     argument_type: file.fa
 
-  population_allele_frequencies:
-    argument_type: file.vcf_gz
-
   # Require parameter arguments
   shard_index:
     argument_type: parameter.string
@@ -57,6 +53,3 @@ output:
 
   output_file_priors:
     argument_type: file.priors
-
-  output_file_contamination:
-    argument_type: file.contamination

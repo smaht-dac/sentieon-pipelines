@@ -104,6 +104,10 @@ RUN chmod +x sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal.s
 COPY sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh .
 RUN chmod +x sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh
 
+## sentieon_TNhaplotyper2_wOrientationBias
+COPY sentieon_TNhaplotyper2_wOrientationBias.sh .
+RUN chmod +x sentieon_TNhaplotyper2_wOrientationBias.sh
+
 ## sentieon_merge_TNfilter_normal
 COPY sentieon_merge_TNfilter_normal.sh .
 RUN chmod +x sentieon_merge_TNfilter_normal.sh
@@ -111,6 +115,10 @@ RUN chmod +x sentieon_merge_TNfilter_normal.sh
 ## sentieon_merge_TNfilter
 COPY sentieon_merge_TNfilter.sh .
 RUN chmod +x sentieon_merge_TNfilter.sh
+
+## sentieon_merge_TNfilter_noContaminationModel
+COPY sentieon_merge_TNfilter_noContaminationModel.sh .
+RUN chmod +x sentieon_merge_TNfilter_noContaminationModel.sh
 
 ## sentieon_ReadWriter
 COPY sentieon_ReadWriter.sh .
