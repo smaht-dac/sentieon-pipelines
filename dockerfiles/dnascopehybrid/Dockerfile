@@ -37,10 +37,6 @@ RUN wget https://s3.amazonaws.com/sentieon-release/software/sentieon-genomics-20
     tar -xzvf sentieon-genomics-202503.01.tar.gz && \
     ln -s sentieon-genomics-202503.01 sentieon
 
-## Sentieon models install
-RUN wget https://s3.amazonaws.com/sentieon-release/other/HybridIlluminaPacBio1.1.bundle && \
-    ln -s HybridIlluminaPacBio1.1.bundle sentieon_model 
-
 ## Samtools install
 RUN wget https://github.com/samtools/samtools/releases/download/1.22.1/samtools-1.22.1.tar.bz2 && \
     tar -xjf samtools-1.22.1.tar.bz2 && \
@@ -94,7 +90,6 @@ RUN chmod +x sentieon_DNAscopeHybrid.sh
 #     Updating env
 #######################################################################
 ENV PATH=/usr/local/bin/sentieon/bin/:$PATH
-ENV PATH=/usr/local/bin/sentieon_model/:$PATH
 ENV PATH=/usr/local/bin/samtools/:$PATH
 ENV PATH=/usr/local/bin/bcftools/:$PATH
 ENV PATH=/usr/local/bin/bedtools/:$PATH
