@@ -39,6 +39,9 @@ input:
     file:
       - dbsnp-all@138_GRCh38
   
+  sentieon_model_bundle:
+    argument_type: file.bundle
+  
   # Required parameter arguments
   sample_name:
     argument_type: parameter.string
@@ -71,7 +74,10 @@ workflows:
         argument_type: file.bwt
 
       dbsnp_vcf_gz:
-        argument_type: file.vcf.tar_gz
+        argument_type: file.vcf.gz
+      
+      sentieon_model_bundle:
+        argument_type: file.bundle
 
       # Parameter arguments
       sample_name:

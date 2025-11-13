@@ -79,6 +79,12 @@ inputs:
     inputBinding:
       prefix: -d
     doc: SNP database file in VCF format with corresponding index file
+  
+  - id: sentieon_model_bundle
+    type: File
+    inputBinding: 
+      prefix: -m
+    doc: Sentieon DNAscope Illumina and PacBio whole genome hybrid model in bundle format
 
 outputs:
   - id: output_file_vcf_gz

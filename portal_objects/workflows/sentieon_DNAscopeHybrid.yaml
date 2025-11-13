@@ -37,6 +37,9 @@ input:
   dbsnp_vcf_gz:
     argument_type: file.vcf.gz
   
+  sentieon_model_bundle:
+    argument_type: file.bundle
+  
   # Required parameter arguments
   sample_name:
     argument_type: parameter.string
