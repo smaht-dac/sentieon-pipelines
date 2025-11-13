@@ -4,6 +4,7 @@
 # Script to run TNhaplotyper2 on tumor-normal data.
 # Generate OrientationBias and ContaminationModel metrics.
 # Implemented to run in distributed mode using shards.
+# Accepts multiple input BAM files.
 # *******************************************
 
 ## Functions
