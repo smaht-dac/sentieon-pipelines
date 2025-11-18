@@ -13,6 +13,33 @@ category:
 ---
 
 ################################################################
+# Sentieon, 202503.01
+################################################################
+name: Sentieon
+version: '202503.01'
+source_url: https://www.sentieon.com
+category:
+  - Alignment
+  - Variant Calling
+  - Format Conversion
+  - Alignment Manipulation
+
+---
+
+################################################################
+# Sentieon CLI, v1.4.0
+#   CLI tool for Sentieon software
+################################################################
+name: Sentieon-CLI
+version: 'v1.4.0'
+source_url: https://github.com/Sentieon/sentieon-cli
+category:
+  - Alignment
+  - Variant Calling
+
+---
+
+################################################################
 # Sentieon_BWA-MEM, 202308.01
 #   Only used for file naming
 ################################################################
@@ -39,3 +66,17 @@ category:
   - Alignment
 # Required for displaying in the file name
 code: sentieon_minimap2
+
+---
+
+################################################################
+# Sentieon_DNAscopeHybrid, 202503.01
+#   Only used for file naming
+################################################################
+name: Sentieon_DNAscopeHybrid
+version: '202503.01'
+source_url: https://www.sentieon.com
+category:
+  - Variant Calling
+# Required for displaying in the file name
+code: sentieon_dnascopehybrid

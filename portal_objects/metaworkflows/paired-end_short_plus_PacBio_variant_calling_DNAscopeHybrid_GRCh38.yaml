@@ -1,10 +1,11 @@
 ## Pipeline information #####################################
 #     General information for the pipeline
 #############################################################
-name: short_long_reads_variant_calling_DNAscopeHybrid_GRCh38
+name: paired-end_short_plus_PacBio_variant_calling_DNAscopeHybrid_GRCh38
 description: Run Sentieon DNAscope Hybrid on Illumina and PacBio data. |
              Produce germline variant calls in VCF format, including SNVs, SVs, and CNVs. |
-             Produce metrics directory.
+             Produce metrics directory. |
+             Accept short-read data in CRAM format and long-read data in CRAM format
 
 category:
   - Variant Calling
@@ -31,17 +32,19 @@ input:
 
   genome_reference_bwt:
     argument_type: file.bwt
-    file:
+    files:
       - complete-reference-bwt-no-alt@GCA_000001405.15_GRCh38_no_decoy
 
   dbsnp_vcf_gz:
-    argument_type: file.vcf.gz
-    file:
+    argument_type: file.vcf_gz
+    files:
       - dbsnp-all@138_GRCh38
-  
+
   sentieon_model_bundle:
     argument_type: file.bundle
-  
+    files:
+      - sentieon-DNAscope-Hybrid-model-bundle@illumina_pacbio_1.1
+
   # Required parameter arguments
   sample_name:
     argument_type: parameter.string
@@ -52,7 +55,7 @@ input:
 workflows:
 
   ## Workflow definition #####################
-  #  TNhaplotyper2_tumor_only
+  #  sentieon_DNAscopeHybrid
   ############################################
   sentieon_DNAscopeHybrid:
 
@@ -74,7 +77,7 @@ workflows:
         argument_type: file.bwt
 
       dbsnp_vcf_gz:
-        argument_type: file.vcf.gz
+        argument_type: file.vcf_gz
       
       sentieon_model_bundle:
         argument_type: file.bundle
@@ -90,30 +93,42 @@ workflows:
 
       # File output
       output_file_vcf_gz:
-        description: DNAscopeHybrid output VCF
+        description: DNAscopeHybrid SNV-indel output VCF
         data_category:
           - Germline Variant Calls
         data_type:
           - SNV
           - Indel
         output_status: Final Output
+        # These fields are required to link metadata for the naming
+        software:
+          - smaht:Software-Sentieon_DNAscopeHybrid_202503.01
+        reference_genome: GRCh38
 
       output_file_sv_vcf_gz:
-        description: DNAscopeHybrid output VCF
+        description: DNAscopeHybrid SV output VCF
         data_category:
           - Germline Variant Calls
         data_type:
           - SV
         output_status: Final Output
-      
+        # These fields are required to link metadata for the naming
+        software:
+          - smaht:Software-Sentieon_DNAscopeHybrid_202503.01
+        reference_genome: GRCh38
+
       output_file_cnv_vcf_gz:
-        description: DNAscopeHybrid output VCF
+        description: DNAscopeHybrid CNV output VCF
         data_category:
           - Germline Variant Calls
         data_type:
           - CNV
         output_status: Final Output
-      
+        # These fields are required to link metadata for the naming
+        software:
+          - smaht:Software-Sentieon_DNAscopeHybrid_202503.01
+        reference_genome: GRCh38
+
       # Directory output
       output_dir_metrics_tar_gz:
         description: DNAscopeHybrid metrics
@@ -122,10 +137,14 @@ workflows:
         data_type:
           - Statistics
         output_status: Final Output
+        # These fields are required to link metadata for the naming
+        software:
+          - smaht:Software-Sentieon_DNAscopeHybrid_202503.01
+        reference_genome: GRCh38
 
     ## EC2 Configuration to use ########
     ####################################
-    config: # 32 cores, 64 GB
+    config:
       instance_type:
         - c5a.8xlarge
         - c6i.8xlarge
@@ -134,7 +153,7 @@ workflows:
         - m6a.8xlarge
         - m7i.8xlarge
         - m7a.8xlarge
-      ebs_size: "1.5x"
+      ebs_size: "2.5x"
       ebs_optimized: True
       spot_instance: True
       run_name: run_sentieon_DNAscopeHybrid

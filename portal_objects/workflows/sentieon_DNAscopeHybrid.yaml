@@ -4,7 +4,8 @@
 name: sentieon_DNAscopeHybrid
 description: Run Sentieon DNAscope Hybrid on Illumina and PacBio data. |
              Produce germline variant calls in VCF format, including SNVs, SVs, and CNVs. |
-             Produce metrics directory.
+             Produce metrics directory. |
+             Accept short-read data in CRAM format and long-read data in CRAM format
 
 runner:
   language: cwl
@@ -12,6 +13,11 @@ runner:
 
 software:
   - Sentieon@202503.01
+  - Sentieon-CLI@v1.4.0
+  - Samtools@1.17
+  - Bcftools@1.17
+  - mosdepth@v0.3.9
+  - Bedtools@v2.31.1
 
 category:
   - Variant Calling
@@ -33,13 +39,13 @@ input:
 
   genome_reference_bwt:
     argument_type: file.bwt
-  
+
   dbsnp_vcf_gz:
-    argument_type: file.vcf.gz
-  
+    argument_type: file.vcf_gz
+
   sentieon_model_bundle:
     argument_type: file.bundle
-  
+
   # Required parameter arguments
   sample_name:
     argument_type: parameter.string
@@ -54,17 +60,17 @@ output:
     argument_type: file.vcf_gz
     secondary_files:
       - vcf_gz_tbi
-  
+
   output_file_sv_vcf_gz:
     argument_type: file.vcf_gz
     secondary_files:
       - vcf_gz_tbi
-  
+
   output_file_cnv_vcf_gz:
     argument_type: file.vcf_gz
     secondary_files:
       - vcf_gz_tbi
-  
+
   # Directory output
   output_dir_metrics_tar_gz:
     argument_type: file.tar_gz

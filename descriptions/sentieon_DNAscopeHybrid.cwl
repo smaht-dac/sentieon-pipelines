@@ -116,4 +116,4 @@ outputs:
 doc: |
   Run Sentieon DNAscope Hybrid on Illumina and PacBio data. |
   Produce germline variant calls in VCF format, including SNVs, SVs, and CNVs. |
-  Produce metrics directory.
+  Produce metrics directory
