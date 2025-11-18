@@ -44,9 +44,7 @@ RUN wget https://s3.amazonaws.com/sentieon-release/software/sentieon-genomics-20
     ln -s sentieon-genomics-202503.01 sentieon
 
 RUN curl -LO https://github.com/Sentieon/sentieon-cli/releases/download/v1.4.0/sentieon_cli-1.4.0.tar.gz && \
-    pip install sentieon_cli-1.4.0.tar.gz && \
-    tar -xzvf sentieon_cli-1.4.0.tar.gz && \
-    ln -s sentieon_cli-1.4.0 sentieon-cli
+    pip install sentieon_cli-1.4.0.tar.gz
 
 ## Samtools install
 RUN wget https://github.com/samtools/samtools/releases/download/1.17/samtools-1.17.tar.bz2 && \
