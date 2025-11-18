@@ -64,7 +64,7 @@ inputs:
       position: 5
     doc: Name of the sample
 
-  - id: input_files_bam
+  - id: input_files_cram
     type:
       -
         items: File
@@ -72,8 +72,8 @@ inputs:
     inputBinding:
       position: 6
     secondaryFiles:
-      - .bai
-    doc: List of input BAM files with the corresponding index file. |
+      - .crai
+    doc: List of input CRAM files with the corresponding index file. |
          Must be sorted by coordinates, |
          and pre-processed to add read groups
 
