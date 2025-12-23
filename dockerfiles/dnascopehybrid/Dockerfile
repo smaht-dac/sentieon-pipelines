@@ -43,8 +43,8 @@ RUN wget https://s3.amazonaws.com/sentieon-release/software/sentieon-genomics-20
     rm -rf sentieon-genomics-202503.01.tar.gz && \
     ln -s sentieon-genomics-202503.01 sentieon
 
-RUN curl -LO https://github.com/Sentieon/sentieon-cli/releases/download/v1.4.0/sentieon_cli-1.4.0.tar.gz && \
-    pip install sentieon_cli-1.4.0.tar.gz
+RUN curl -LO https://github.com/Sentieon/sentieon-cli/releases/download/v1.5.0/sentieon_cli-1.5.0.tar.gz && \
+    pip install sentieon_cli-1.5.0.tar.gz
 
 ## Samtools install
 RUN wget https://github.com/samtools/samtools/releases/download/1.17/samtools-1.17.tar.bz2 && \
@@ -59,16 +59,16 @@ WORKDIR /usr/local/bin/
 RUN ln -s samtools-1.17 samtools
 
 ## Bcftools install
-RUN wget https://github.com/samtools/bcftools/releases/download/1.17/bcftools-1.17.tar.bz2 && \
-    tar -xjf bcftools-1.17.tar.bz2 && \
-    rm -rf bcftools-1.17.tar.bz2
+RUN wget https://github.com/samtools/bcftools/releases/download/1.22/bcftools-1.22.tar.bz2 && \
+    tar -xjf bcftools-1.22.tar.bz2 && \
+    rm -rf bcftools-1.22.tar.bz2
 
-WORKDIR /usr/local/bin/bcftools-1.17
+WORKDIR /usr/local/bin/bcftools-1.22
 RUN ./configure && \
     make
 
 WORKDIR /usr/local/bin/
-RUN ln -s bcftools-1.17 bcftools
+RUN ln -s bcftools-1.22 bcftools
 
 ## Bedtools install
 RUN wget https://github.com/arq5x/bedtools2/releases/download/v2.31.1/bedtools-2.31.1.tar.gz && \
