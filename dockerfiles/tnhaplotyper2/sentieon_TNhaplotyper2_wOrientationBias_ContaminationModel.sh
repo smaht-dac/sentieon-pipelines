@@ -25,7 +25,7 @@ process_bam_header() {
     # Loop through @RG lines and modify ID field
     # Create --replace_rg arguments
     while IFS= read -r rg_line; do
-        orig_rg_id=$(echo "$rg_line" | awk -F'\t' '/ID:/ {print $2}' | sed "s/ID://")
+        orig_rg_id=$(echo "$rg_line" | awk -F'\t' '{for (i=1; i<=NF; i++) if ($i ~ /^ID:/) {sub(/^ID:/,"",$i); print $i; exit}}')
         new_rg_id="${orig_rg_id}-$(generate_random_string)"
         new_rg_line=$(echo "$rg_line" | cut -f 2- | \
             sed "s/ID:${orig_rg_id}/ID:${new_rg_id}/; s/\(SM:\)[^[:space:]]*/\1${sample}/")
@@ -66,7 +66,7 @@ nt=$(nproc) # number of threads to use in computation,
 input_files=""
 
 # Adding files
-for file in $@;
+for file in "$@";
   do
     replace_args=$(process_bam_header $file $genome_reference_fasta $sample_name)
     input_files+=" $replace_args -i $file "
