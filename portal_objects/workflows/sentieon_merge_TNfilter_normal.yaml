@@ -11,7 +11,7 @@ runner:
   main: sentieon_merge_TNfilter_normal.cwl
 
 software:
-  - Sentieon@202308.01
+  - Sentieon@202503.01
 
 category:
   - Variant Calling

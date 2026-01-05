@@ -13,7 +13,7 @@ runner:
   main: sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal.cwl
 
 software:
-  - Sentieon@202308.01
+  - Sentieon@202503.01
 
 category:
   - Variant Calling

@@ -80,3 +80,17 @@ category:
   - Variant Calling
 # Required for displaying in the file name
 code: sentieon_dnascopehybrid
+
+---
+
+################################################################
+# Sentieon_TNhaplotyper2, 202503.01
+#   Only used for file naming
+################################################################
+name: Sentieon_TNhaplotyper2
+version: '202503.01'
+source_url: https://www.sentieon.com
+category:
+  - Variant Calling
+# Required for displaying in the file name
+code: sentieon_tnhaplotyper2
