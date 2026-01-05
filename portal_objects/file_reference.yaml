@@ -1,0 +1,16 @@
+################################################################
+# Sentieon DNAscope Hybrid model bundle, illumina_pacbio_1.1
+#   Illumina + PacBio
+#   https://s3.amazonaws.com/sentieon-release/other/HybridIlluminaPacBio1.1.bundle
+################################################################
+name: sentieon-DNAscope-Hybrid-model-bundle
+description: Sentieon DNAscope Hybrid model bundle for Illumina and PacBio data
+format: bundle
+version: illumina_pacbio_1.1
+category:
+  - Germline Variant Calls
+type:
+  - Statistics
+# Required to enable sync with a reference bucket
+uuid: 7ac24c9c-4fe0-4f37-a4f1-189f3e5a36cb
+accession: SMAFI4R4Z19J
