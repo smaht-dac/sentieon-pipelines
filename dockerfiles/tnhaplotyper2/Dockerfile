@@ -33,9 +33,9 @@ ENV LC_ALL=en_US.UTF-8
 #     Software
 #######################################################################
 ## Sentieon install
-RUN wget https://s3.amazonaws.com/sentieon-release/software/sentieon-genomics-202308.01.tar.gz && \
-    tar -xzvf sentieon-genomics-202308.01.tar.gz && \
-    ln -s sentieon-genomics-202308.01 sentieon
+RUN wget https://s3.amazonaws.com/sentieon-release/software/sentieon-genomics-202503.01.tar.gz && \
+    tar -xzvf sentieon-genomics-202503.01.tar.gz && \
+    ln -s sentieon-genomics-202503.01 sentieon
 
 ## Samtools install
 RUN wget https://github.com/samtools/samtools/releases/download/1.17/samtools-1.17.tar.bz2 && \
@@ -52,45 +52,30 @@ RUN ln -s samtools-1.17 samtools
 #######################################################################
 #     Scripts
 #######################################################################
-## sentieon_bwa-mem_sort_Hi-C
-COPY sentieon_bwa-mem_sort_Hi-C.sh .
-RUN chmod +x sentieon_bwa-mem_sort_Hi-C.sh
 
-## sentieon_bwa-mem_sort
-COPY sentieon_bwa-mem_sort.sh .
-RUN chmod +x sentieon_bwa-mem_sort.sh
+## TNhaplotyper2_tumor_only
+COPY TNhaplotyper2_tumor_only.sh .
+RUN chmod +x TNhaplotyper2_tumor_only.sh
 
-## sentieon_Dedup
-COPY sentieon_Dedup.sh .
-RUN chmod +x sentieon_Dedup.sh
+## sentieon_TNhaplotyper2
+COPY sentieon_TNhaplotyper2.sh .
+RUN chmod +x sentieon_TNhaplotyper2.sh
 
-## sentieon_LocusCollector_apply
-COPY sentieon_LocusCollector_apply.sh .
-RUN chmod +x sentieon_LocusCollector_apply.sh
+## sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal
+COPY sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal.sh .
+RUN chmod +x sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal.sh
 
-## sentieon_LocusCollector
-COPY sentieon_LocusCollector.sh .
-RUN chmod +x sentieon_LocusCollector.sh
+## sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel
+COPY sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh .
+RUN chmod +x sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.sh
 
-## sentieon_minimap2_sort
-COPY sentieon_minimap2_sort.sh .
-RUN chmod +x sentieon_minimap2_sort.sh
+## sentieon_merge_TNfilter_normal
+COPY sentieon_merge_TNfilter_normal.sh .
+RUN chmod +x sentieon_merge_TNfilter_normal.sh
 
-## sentieon_QualCal_merge
-COPY sentieon_QualCal_merge.sh .
-RUN chmod +x sentieon_QualCal_merge.sh
-
-## sentieon_QualCal
-COPY sentieon_QualCal.sh .
-RUN chmod +x sentieon_QualCal.sh
-
-## sentieon_Realigner
-COPY sentieon_Realigner.sh .
-RUN chmod +x sentieon_Realigner.sh
-
-## sentieon_ReadWriter
-COPY sentieon_ReadWriter.sh .
-RUN chmod +x sentieon_ReadWriter.sh
+## sentieon_merge_TNfilter
+COPY sentieon_merge_TNfilter.sh .
+RUN chmod +x sentieon_merge_TNfilter.sh
 
 #######################################################################
 #     Updating env

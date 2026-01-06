@@ -5,7 +5,7 @@ name: sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel
 description: Run Sentieon TNhaplotyper2 algorithm for tumor only. |
              Run OrientationBias and ContaminationModel to generate metrics for TNfilter. |
              Require a file with population allele frequencies in VCF format. |
-             Accept a list of BAM files and produce raw calls in VCF format. |
+             Accept a list of CRAM files and produce raw calls in VCF format. |
              Implemented to run on shards in distributed mode
 
 runner:
@@ -13,7 +13,7 @@ runner:
   main: sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel.cwl
 
 software:
-  - Sentieon@202308.01
+  - Sentieon@202503.01
 
 category:
   - Variant Calling
@@ -27,8 +27,8 @@ input:
   shards_file_txt:
     argument_type: file.txt
 
-  input_files_bam:
-    argument_type: file.bam
+  input_files_cram:
+    argument_type: file.cram
 
   genome_reference_fasta:
     argument_type: file.fa

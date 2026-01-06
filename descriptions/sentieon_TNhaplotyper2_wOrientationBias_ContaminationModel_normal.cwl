@@ -15,7 +15,7 @@ requirements:
 
 hints:
   - class: DockerRequirement
-    dockerPull: ACCOUNT/sentieon:VERSION
+    dockerPull: ACCOUNT/tnhaplotyper2:VERSION
 
 baseCommand: [sentieon_TNhaplotyper2_wOrientationBias_ContaminationModel_normal.sh]
 

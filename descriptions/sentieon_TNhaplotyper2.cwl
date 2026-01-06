@@ -15,7 +15,7 @@ requirements:
 
 hints:
   - class: DockerRequirement
-    dockerPull: ACCOUNT/sentieon:VERSION
+    dockerPull: ACCOUNT/tnhaplotyper2:VERSION
 
 baseCommand: [sentieon_TNhaplotyper2.sh]
 
@@ -72,7 +72,7 @@ inputs:
       position: 6
     doc: Adds PADDING_SIZE bases padding to the edges of the input intervals
 
-  - id: input_files_bam
+  - id: input_files_cram
     type:
       -
         items: File
@@ -80,8 +80,8 @@ inputs:
     inputBinding:
       position: 7
     secondaryFiles:
-      - .bai
-    doc: List of input BAM files with the corresponding index file. |
+      - .crai
+    doc: List of input CRAM files with the corresponding index file. |
          Must be sorted by coordinates, |
          and pre-processed to add read groups
 
