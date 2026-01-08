@@ -1,7 +1,7 @@
 #######################################################################
 #     Basic image
 #######################################################################
-FROM public.ecr.aws/smaht-dac/base-ubuntu2204-py38:0.0.1
+FROM public.ecr.aws/smaht-dac/base-ubuntu2204-py39:0.0.1
 
 LABEL maintainers="Charlotte Zhang (charlotte_zhang@hms.harvard.edu), Dominika Maziec (dominika_maziec@hms.harvard.edu), Michele Berselli (berselli.michele@gmail.com)"
 
@@ -13,7 +13,7 @@ LABEL maintainers="Charlotte Zhang (charlotte_zhang@hms.harvard.edu), Dominika M
 RUN apt-get update -y && apt-get install -y \
     locales \
     tabix=1.13+ds-2build1 \
-    libncurses-dev=6.3-2 \
+    libncurses-dev=6.3-2ubuntu0.1 \
     libbz2-dev=1.0.8-5build1 \
     liblzma-dev=5.2.5-2ubuntu1 \
     libjemalloc2=5.2.1-4ubuntu1 \
@@ -42,6 +42,9 @@ RUN wget https://s3.amazonaws.com/sentieon-release/software/sentieon-genomics-20
     tar -xzvf sentieon-genomics-202503.01.tar.gz && \
     rm -rf sentieon-genomics-202503.01.tar.gz && \
     ln -s sentieon-genomics-202503.01 sentieon
+
+RUN pip install --upgrade pip build
+RUN pip install poetry==2.0.0
 
 RUN curl -LO https://github.com/Sentieon/sentieon-cli/releases/download/v1.5.0/sentieon_cli-1.5.0.tar.gz && \
     pip install sentieon_cli-1.5.0.tar.gz
