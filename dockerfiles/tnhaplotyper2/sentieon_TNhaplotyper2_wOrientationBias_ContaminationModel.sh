@@ -85,6 +85,11 @@ while read -r line;
     regions+=" --shard $line"
   done <SHARDS_LIST
 
+
+ln -s $genome_reference_fasta ./ref.fa
+ln -s ${genome_reference_fasta%.fa}.dict ./ref.dict
+ln -s ${genome_reference_fasta}.fai ./ref.fa.fai
+
 # ******************************************
 # 3. TNhaplotyper2 command line
 # ******************************************

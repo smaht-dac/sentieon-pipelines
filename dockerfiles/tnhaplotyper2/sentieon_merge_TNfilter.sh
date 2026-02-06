@@ -30,17 +30,20 @@ input_contamination_shards=""
 for arg in $@; do
     # Check if the file has a .vcf.gz extension
     if [[ $arg == *.vcf.gz ]]; then
-        # Get basename
-        basename=${arg##*/}
-        # Copy .vcf.gz .vcf.gz.stats to local
-        # and remove ##reference tag in the header of .vcf.gz
-        # otherwise sentieon will not merge the files because the
-        # different tmp paths created for the different shards by docker mount
-        gunzip -c $arg | grep -v "^##reference" | \
-        sentieon util vcfconvert - $basename || exit 1
-        cp ${arg}.stats ${basename}.stats
-        # Add to argument
-        input_vcf_gz_shards+=" $basename"
+		# BUG: cannot decompress shards and retain all variants
+
+        ## Get basename
+        #basename=${arg##*/}
+        ## Copy .vcf.gz .vcf.gz.stats to local
+        ## and remove ##reference tag in the header of .vcf.gz
+        ## otherwise sentieon will not merge the files because the
+        ## different tmp paths created for the different shards by docker mount
+		## ^^ Fixed with symlinks in previous TNHaplotyper2 scripts
+        #gunzip -c $arg | grep -v "^##reference" | \
+        #sentieon util vcfconvert - $basename || exit 1
+        #cp ${arg}.stats ${basename}.stats
+        ## Add to argument
+        input_vcf_gz_shards+=" $arg"
     # Check if the file has a .priors extension
     elif [[ $arg == *.priors ]]; then
         input_priors_shards+=" $arg"
