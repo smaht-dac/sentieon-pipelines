@@ -93,7 +93,7 @@ ln -s ${genome_reference_fasta}.fai ./ref.fa.fai
 # ******************************************
 # 3. TNhaplotyper2 command line
 # ******************************************
-command="sentieon driver -t $nt -r $genome_reference_fasta $input_files $regions"
+command="sentieon driver -t $nt -r ./ref.fa $input_files $regions"
 command+=" --algo TNhaplotyper2 --tumor_sample $sample_name --germline_vcf $population_allele_frequencies output.vcf.gz"
 command+=" --algo OrientationBias --tumor_sample $sample_name output.priors"
 command+=" --algo ContaminationModel --tumor_sample $sample_name -v $population_allele_frequencies output.contamination"
